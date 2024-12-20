@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+[hkey_local_machine\software\microsoft\windows\currentversion\policies\system]
+"consentpromptbehavioradmin"=dword:00000000
+
+[hkey_current_user\software\microsoft\windows\currentversion\explorer\advanced]
+"hidden"=dword:00000001
+"showsuperhidden"=dword:00000001
+"hidefileext"=dword:00000000
+"showtaskviewbutton"=dword:00000000
+
+[hkey_current_user\software\microsoft\windows\currentversion\search]
+"searchboxtaskbarmode"=dword:00000000
+
+[hkey_current_user\software\microsoft\windows\currentversion\searchsettings]
+"isdynamicsearchboxenabled"=dword:00000000
+
+[hkey_current_user\software\microsoft\windows\currentversion\feeds]
+"shellfeedstaskbarviewmode"=dword:00000000
+
+[hkey_current_user\software\microsoft\windows\currentversion\feeds\dsb]
+"showdynamiccontent"=dword:00000000
+

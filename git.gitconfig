@@ -1,0 +1,7 @@
+[user]
+	name = thruse
+	email = thruse7@gmail.com
+[credential]
+	helper = manager
+[credential "https://github.com"]
+	username = thruse
