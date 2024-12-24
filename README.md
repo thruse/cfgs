@@ -13,9 +13,14 @@ This setup works on modern systems.
 Install things for the first time with `cfg`, but delete things manually to get `cfg` to reinstall them.
 
 ## Todo
-* Add more non-dev programs to `cfg`
+* Install vscode extensions on Windows `code --install-extension "ms-vscode.cpptools"` etc.
+* Configure python venv
+* Configure and install python on Windows
+* Add more non-dev programs to `cfg` (Discord, Gimp, OBS, VLC, Kindle?, ...)
+* Winget GIMP: check for gimp directory before installing (don't know the path to gimp, probably c:\program files\gimp) check when home. Similar to emacs winget cant detect that it's not installed I think (check this too with winget list)
 * Add more of my usual directories to `cfg` (forgot some)
-* Add `.reg` files, specifically one to stop run as administrator confirmation prompt
-* Add automatic execution of registry files into `cfg`
-* Replicate `cfg` for unix
-* Possible idea: in `cfg`, copies instead of symlinks?
+* macOS settings (set text size?)
+* Check if `echo @echo off>%userprofile%\set_mydir.bat` works properly
+* Uninstall things that aren't already on Brew on macOS (Spotify, Discord, Gimp, Chrome, OBS) and install through brew (add to Brewfile)
+* Perhaps do more in PowerShell on Windows
+* Possily remove dependency on having `c:` be the system drive (by using `%windir%`, `%programfiles%`, ...)

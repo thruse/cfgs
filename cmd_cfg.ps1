@@ -1,7 +1,7 @@
-$cmd_shortcut = "C:\Users\thruse\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt.lnk"
+$cmd_shortcut = "$env:userprofile\appdata\roaming\microsoft\windows\start menu\programs\system tools\command prompt.lnk"
 $ws_shell = (new-object -comobject wscript.shell).createshortcut($cmd_shortcut)
 $ws_shell.targetpath = "c:\windows\system32\cmd.exe"
-$ws_shell.arguments = "/k ""set mydir=$env:mydir"" && ""$env:mydir\dev\cfgs\shin"""
+$ws_shell.arguments = "/k ""$env:mydir\dev\cfgs\shin"""
 $ws_shell.save()
 
 # run shortcut as administrator by default hack

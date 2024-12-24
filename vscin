@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+mkdir .vscode > /dev/null 2> /dev/null
+pushd .vscode > /dev/null
+mv -f settings.json "$MYDIR/dev/tmp/vscode_$RANDOM.json" > /dev/null 2> /dev/null
+cp "$MYDIR/dev/cfgs/vscode.json" settings.json
+popd > /dev/null
+
