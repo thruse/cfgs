@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+mv -f "$1" "$MYDIR/dev/tmp/$(basename "$1")_$RANDOM"
+

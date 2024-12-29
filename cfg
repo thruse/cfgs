@@ -15,34 +15,48 @@ mkdir "$MYDIR/vids"
 mkdir "$MYDIR/misc_programs"
 mkdir "$MYDIR/misc"
 
-if [[ "$(uname)" == "Darwin" ]]; then
-    softwareupdate --install-rosetta --agree-to-license
+if [ "$(uname)" = "Darwin" ]
+then
+    if [ $(uname -m) = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null)
+    then
+        softwareupdate --install-rosetta --agree-to-license
+    fi
     eval $(/opt/homebrew/bin/brew shellenv)
     brew bundle install --no-upgrade --file="$MYDIR/dev/cfgs/Brewfile"
 
     defaults write com.apple.dock tilesize -int 16
+    defaults write com.apple.dock size-immutable -bool true
     killall Dock
 fi
 
-python3 -m venv "$MYDIR/dev/py_venv"
+python3 -m venv "$MYDIR/dev/venv"
 
-mv -f "$HOME/.bash_profile" "$MYDIR/dev/tmp/bash_$RANDOM.bash_profile" > /dev/null 2> /dev/null
+. "$MYDIR/dev/cfgs/bash.bash_profile"
+
+mv -f "$MYDIR/dev/bin/srm" "$MYDIR/dev/tmp/srm_$RANDOM" > /dev/null 2> /dev/null
+cp "$MYDIR/dev/cfgs/srm" "$MYDIR/dev/bin/srm" > /dev/null 2> /dev/null
+chmod +x "$MYDIR/dev/bin/srm"
+
+srm "$MYDIR/dev/bin/vscin" > /dev/null 2> /dev/null
+cp "$MYDIR/dev/cfgs/vscin" "$MYDIR/dev/bin/vscin"
+chmod +x "$MYDIR/dev/bin/vscin"
+
+srm "$MYDIR/dev/bin/venvin" > /dev/null 2> /dev/null
+cp "$MYDIR/dev/cfgs/venvin" "$MYDIR/dev/bin/venvin"
+
+srm "$HOME/.bash_profile" > /dev/null 2> /dev/null
 cp "$MYDIR/dev/cfgs/bash.bash_profile" "$HOME/.bash_profile"
 
 mkdir -p "$HOME/.config/nvim"
-mv -f "$HOME/.config/nvim/init.vim" "$MYDIR/dev/tmp/nvim_$RANDOM.vim" > /dev/null 2> /dev/null
+srm "$HOME/.config/nvim/init.vim" > /dev/null 2> /dev/null
 cp "$MYDIR/dev/cfgs/nvim.vim" "$HOME/.config/nvim/init.vim"
-
-mv -f "$MYDIR/dev/bin/vscin" "$MYDIR/dev/tmp/vscin_$RANDOM" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/vscin" "$MYDIR/dev/bin/vscin"
-chmod +x "$MYDIR/dev/bin/vscin"
 
 mkdir -p "$HOME/.emacs.d/baks"
 mkdir -p "$HOME/.emacs.d/autosaves"
 cat /dev/null > "$HOME/.emacs.d/custom.el"
-mv -f "$HOME/.emacs.d/init.el" "$MYDIR/dev/tmp/emacs_$RANDOM.el" > /dev/null 2> /dev/null
+srm "$HOME/.emacs.d/init.el" > /dev/null 2> /dev/null
 cp "$MYDIR/dev/cfgs/emacs.el" "$HOME/.emacs.d/init.el"
 
-mv -f "$HOME/.gitconfig" "$MYDIR/dev/tmp/git_$RANDOM.gitconfig" > /dev/null 2> /dev/null
+srm "$HOME/.gitconfig" > /dev/null 2> /dev/null
 cp "$MYDIR/dev/cfgs/git.gitconfig" "$HOME/.gitconfig"
 
