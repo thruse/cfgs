@@ -3,17 +3,17 @@ deactivate
 if [ "$1" = "--" ]
 then
     VIRTUAL_ENV_DISABLE_PROMPT=1
-    . "$MYDIR/dev/venv/bin/activate"
+    . "$DEVDIR/.venv/bin/activate"
     unset VIRTUAL_ENV_DISABLE_PROMPT
-elif [ -f venv/bin/activate ]
+elif [ -f .venv/bin/activate ]
 then
-    . venv/bin/activate
+    . .venv/bin/activate
 elif [ -f "$1/bin/activate" ]
 then
     . "$1/bin/activate"
 else
     VIRTUAL_ENV_DISABLE_PROMPT=1
-    . "$MYDIR/dev/venv/bin/activate"
+    . "$DEVDIR/.venv/bin/activate"
     unset VIRTUAL_ENV_DISABLE_PROMPT
 fi
 

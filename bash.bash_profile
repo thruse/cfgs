@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-. "$HOME/.set_mydir"
+. "$HOME/.setdirs"
 
-cd "$MYDIR/dev"
+cd "$DEVDIR"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export PATH="$MYDIR/dev/bin:$PATH"
+export PATH="$DEVDIR/bin:$PATH"
 
 VIRTUAL_ENV_DISABLE_PROMPT=1
-. "$MYDIR/dev/venv/bin/activate"
+. "$DEVDIR/.venv/bin/activate"
 unset VIRTUAL_ENV_DISABLE_PROMPT
 
 function runemacs() { (emacs --eval '(select-frame-set-input-focus (selected-frame))' "$@" &) }

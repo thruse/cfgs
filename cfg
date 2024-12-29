@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 
 MYDIR="$(realpath "$(dirname "$(readlink -f "$0")")/../..")"
+DEVDIR="$(realpath "$(dirname "$(readlink -f "$0")")/..")"
 
-echo "#!/usr/bin/env bash" > $HOME/.set_mydir
-echo "export MYDIR=\"$MYDIR\"" >> $HOME/.set_mydir
+echo "#!/usr/bin/env bash" > "$HOME/.setdirs"
+echo "export MYDIR=\"$MYDIR\"" >> "$HOME/.setdirs"
+echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/.setdirs"
 
-mkdir "$MYDIR/dev/bin"
-mkdir "$MYDIR/dev/tmp"
-mkdir "$MYDIR/dev/archive"
+mkdir "$DEVDIR/bin"
+mkdir "$DEVDIR/tmp"
+mkdir "$DEVDIR/archive"
 
 mkdir "$MYDIR/tmp"
 mkdir "$MYDIR/games"
 mkdir "$MYDIR/vids"
 mkdir "$MYDIR/misc_programs"
 mkdir "$MYDIR/misc"
+mkdir "$MYDIR/scrap"
 
 if [ "$(uname)" = "Darwin" ]
 then
@@ -22,41 +25,41 @@ then
         softwareupdate --install-rosetta --agree-to-license
     fi
     eval $(/opt/homebrew/bin/brew shellenv)
-    brew bundle install --no-upgrade --file="$MYDIR/dev/cfgs/Brewfile"
+    brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
 
     defaults write com.apple.dock tilesize -int 16
     defaults write com.apple.dock size-immutable -bool true
     killall Dock
 fi
 
-python3 -m venv "$MYDIR/dev/venv"
+python3 -m venv "$DEVDIR/.venv"
 
-. "$MYDIR/dev/cfgs/bash.bash_profile"
+. "$DEVDIR/cfgs/bash.bash_profile"
 
-mv -f "$MYDIR/dev/bin/srm" "$MYDIR/dev/tmp/srm_$RANDOM" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/srm" "$MYDIR/dev/bin/srm" > /dev/null 2> /dev/null
-chmod +x "$MYDIR/dev/bin/srm"
+mv -f "$DEVDIR/bin/srm" "$DEVDIR/tmp/srm_$RANDOM" > /dev/null 2> /dev/null
+cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm" > /dev/null 2> /dev/null
+chmod +x "$DEVDIR/bin/srm"
 
-srm "$MYDIR/dev/bin/vscin" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/vscin" "$MYDIR/dev/bin/vscin"
-chmod +x "$MYDIR/dev/bin/vscin"
+srm "$DEVDIR/bin/vscin" > /dev/null 2> /dev/null
+cp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
+chmod +x "$DEVDIR/bin/vscin"
 
-srm "$MYDIR/dev/bin/venvin" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/venvin" "$MYDIR/dev/bin/venvin"
+srm "$DEVDIR/bin/venvin" > /dev/null 2> /dev/null
+cp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
 srm "$HOME/.bash_profile" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/bash.bash_profile" "$HOME/.bash_profile"
+cp "$DEVDIR/cfgs/bash.bash_profile" "$HOME/.bash_profile"
 
 mkdir -p "$HOME/.config/nvim"
 srm "$HOME/.config/nvim/init.vim" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/nvim.vim" "$HOME/.config/nvim/init.vim"
+cp "$DEVDIR/cfgs/nvim.vim" "$HOME/.config/nvim/init.vim"
 
 mkdir -p "$HOME/.emacs.d/baks"
 mkdir -p "$HOME/.emacs.d/autosaves"
 cat /dev/null > "$HOME/.emacs.d/custom.el"
 srm "$HOME/.emacs.d/init.el" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/emacs.el" "$HOME/.emacs.d/init.el"
+cp "$DEVDIR/cfgs/emacs.el" "$HOME/.emacs.d/init.el"
 
 srm "$HOME/.gitconfig" > /dev/null 2> /dev/null
-cp "$MYDIR/dev/cfgs/git.gitconfig" "$HOME/.gitconfig"
+cp "$DEVDIR/cfgs/git.gitconfig" "$HOME/.gitconfig"
 
