@@ -36,30 +36,30 @@ python3 -m venv "$DEVDIR/.venv"
 
 . "$DEVDIR/cfgs/bash.bash_profile"
 
-mv -f "$DEVDIR/bin/srm" "$DEVDIR/tmp/srm_$RANDOM" > /dev/null 2> /dev/null
-cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm" > /dev/null 2> /dev/null
+mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM"
+cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"
 chmod +x "$DEVDIR/bin/srm"
 
-srm "$DEVDIR/bin/vscin" > /dev/null 2> /dev/null
+srm "$DEVDIR/bin/vscin"
 cp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
 chmod +x "$DEVDIR/bin/vscin"
 
-srm "$DEVDIR/bin/venvin" > /dev/null 2> /dev/null
+srm "$DEVDIR/bin/venvin"
 cp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
-srm "$HOME/.bash_profile" > /dev/null 2> /dev/null
+srm "$HOME/.bash_profile"
 cp "$DEVDIR/cfgs/bash.bash_profile" "$HOME/.bash_profile"
 
 mkdir -p "$HOME/.config/nvim"
-srm "$HOME/.config/nvim/init.vim" > /dev/null 2> /dev/null
+srm "$HOME/.config/nvim/init.vim"
 cp "$DEVDIR/cfgs/nvim.vim" "$HOME/.config/nvim/init.vim"
 
 mkdir -p "$HOME/.emacs.d/baks"
 mkdir -p "$HOME/.emacs.d/autosaves"
 cat /dev/null > "$HOME/.emacs.d/custom.el"
-srm "$HOME/.emacs.d/init.el" > /dev/null 2> /dev/null
+srm "$HOME/.emacs.d/init.el"
 cp "$DEVDIR/cfgs/emacs.el" "$HOME/.emacs.d/init.el"
 
-srm "$HOME/.gitconfig" > /dev/null 2> /dev/null
+srm "$HOME/.gitconfig"
 cp "$DEVDIR/cfgs/git.gitconfig" "$HOME/.gitconfig"
 

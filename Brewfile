@@ -22,3 +22,4 @@ cask "discord"
 cask "gimp"
 cask "obs"
 cask "vlc"
+
