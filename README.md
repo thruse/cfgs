@@ -15,7 +15,7 @@ For more things to add (for example automation of macOS system settings) look at
 ### Possibly useful things
 * `powershell -c winget list ^| select-string winget` because `winget list --source winget` doesn't work
 * `brew uninstall --zap formula-name` may fully uninstall all files related to `formula-name`.
-* `winget export c:\path\to\packages.json --source winget --include-versions` to get installed `winget` stuff.
+* `winget export --output c:\path\to\packages.json --source winget --include-versions` to get installed `winget` stuff.
 * `brew bundle dump --file=/path/to/Brewfile` to get installed `homebrew` stuff.
 
 ## Todo
