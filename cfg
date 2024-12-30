@@ -20,21 +20,26 @@ mkdir "$MYDIR/scrap"
 
 if [ "$(uname)" = "Darwin" ]
 then
-    if [ $(uname -m) = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null)
+    if [ "$1" = "--install" ]
     then
-        softwareupdate --install-rosetta --agree-to-license
+        if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null)
+        then
+            softwareupdate --install-rosetta --agree-to-license
+        fi
+        eval $(/opt/homebrew/bin/brew shellenv)
+        brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
+
+        python3 -m venv "$DEVDIR/.venv"
+
+        . "$DEVDIR/cfgs/bash.bash_profile"
+
+        # pip install --requirement "%devdir%\cfgs\requirements.txt"
     fi
-    eval $(/opt/homebrew/bin/brew shellenv)
-    brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
 
     defaults write com.apple.dock tilesize -int 16
     defaults write com.apple.dock size-immutable -bool true
     killall Dock
 fi
-
-python3 -m venv "$DEVDIR/.venv"
-
-. "$DEVDIR/cfgs/bash.bash_profile"
 
 mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM"
 cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"
@@ -48,18 +53,18 @@ srm "$DEVDIR/bin/venvin"
 cp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
 srm "$HOME/.bash_profile"
-cp "$DEVDIR/cfgs/bash.bash_profile" "$HOME/.bash_profile"
+cp "$DEVDIR/cfgs/.bash_profile" "$HOME/.bash_profile"
 
 mkdir -p "$HOME/.config/nvim"
 srm "$HOME/.config/nvim/init.vim"
-cp "$DEVDIR/cfgs/nvim.vim" "$HOME/.config/nvim/init.vim"
+cp "$DEVDIR/cfgs/init.vim" "$HOME/.config/nvim/init.vim"
 
 mkdir -p "$HOME/.emacs.d/baks"
 mkdir -p "$HOME/.emacs.d/autosaves"
 cat /dev/null > "$HOME/.emacs.d/custom.el"
 srm "$HOME/.emacs.d/init.el"
-cp "$DEVDIR/cfgs/emacs.el" "$HOME/.emacs.d/init.el"
+cp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
 
 srm "$HOME/.gitconfig"
-cp "$DEVDIR/cfgs/git.gitconfig" "$HOME/.gitconfig"
+cp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
 
