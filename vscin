@@ -2,7 +2,7 @@
 
 mkdir .vscode > /dev/null 2> /dev/null
 pushd .vscode > /dev/null
-mv -f settings.json "$DEVDIR/tmp/vscode_$RANDOM.json" > /dev/null 2> /dev/null
+srm settings.json > /dev/null 2> /dev/null
 cp "$DEVDIR/cfgs/vscode.json" settings.json
 popd > /dev/null
 

@@ -39,13 +39,7 @@ winget import --no-upgrade --import-file
 
 set get=winget install --source winget --silent --no-upgrade --exact --moniker
 
-%get% vs2022-community
-rem "--add Microsoft.VisualStudio.Component.VC.CoreIde ^
-rem --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
-rem --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest ^
-rem --add Microsoft.VisualStudio.Component.Windows10SDK"
-
-if not exist "c:\program files\emacs" (goto install_emacs) else (goto emacs_installed)
+if not exist "%programfiles%\emacs" (goto install_emacs) else (goto emacs_installed)
 :install_emacs
 %get% emacs
 goto after_emacs_install
@@ -53,9 +47,7 @@ goto after_emacs_install
 echo emacs already installed
 :after_emacs_install
 
-winget install --source winget --silent --no-upgrade --exact --id Valve.Steam
-winget install --source winget --silent --no-upgrade --exact --id Spotify.Spotify
-
+%get% vs2022-community
 %get% nvim
 %get% vscode
 %get% 7zip
@@ -64,6 +56,18 @@ winget install --source winget --silent --no-upgrade --exact --id Spotify.Spotif
 %get% r
 
 %get% chrome
+
+set get=winget install --source winget --silent --no-upgrade --exact --id
+
+%get% Valve.Steam
+%get% Spotify.Spotify
+
+"%programfiles(x86)%\microsoft visual studio\installer\setup" modify --quiet ^
+--installpath "%programfiles%\microsoft visual studio\2022\community" ^
+--add Microsoft.VisualStudio.Component.VC.CoreIde ^
+--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
+--add Microsoft.VisualStudio.Component.VC.Redist.14.Latest ^
+--add Microsoft.VisualStudio.Component.Windows10SDK
 
 reg import "%devdir%\cfgs\w32_cfg.reg"
 
