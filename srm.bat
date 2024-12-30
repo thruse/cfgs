@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 setlocal
 
 for %%i in ("%1") do set basename=%%~nxi

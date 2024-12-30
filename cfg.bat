@@ -1,7 +1,7 @@
-@echo off
+rem @echo off
 setlocal
 
-for /f "usebackq" %%i in (`powershell -noprofile -command "(get-item '%~f0').target"`) do set symlink_target=%%i
+for /f "usebackq" %%i in (`call powershell -noprofile -command "(get-item '%~f0').target"`) do set symlink_target=%%i
 if not defined symlink_target (goto file)
 
 for %%i in ("%symlink_target%") do set current_directory=%%~dpi
@@ -38,33 +38,36 @@ if not "%1" == "--install" (goto after_install)
 
 set winget_opts=--accept-source-agreements --accept-package-agreements --no-upgrade --disable-interactivity
 
-winget import --import-file "%devdir%\cfgs\packages.json" %winget_opts%
+call winget import %winget_opts% --import-file "%devdir%\cfgs\packages.json"
 
 if exist "%programfiles%\emacs" (goto after_emacs_installed)
-winget install --source winget --silent %winget_opts% --exact --id GNU.Emacs --version 29.4
+call winget install --source winget --silent %winget_opts% --exact --id GNU.Emacs --version 29.4
 :after_emacs_installed
 
-"%userprofile%\appdata\local\programs\python\python312\python" -m venv "%devdir%\.venv"
+call "%userprofile%\appdata\local\programs\python\python312\python" -m venv "%devdir%\.venv"
 
-"%programfiles(x86)%\microsoft visual studio\installer\setup" modify --quiet ^
+call "%programfiles(x86)%\microsoft visual studio\installer\setup" modify --quiet ^
 --installpath "%programfiles%\microsoft visual studio\2022\community" ^
 --add Microsoft.VisualStudio.Component.VC.CoreIde ^
 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
 --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest ^
---add Microsoft.VisualStudio.Component.Windows10SDK
+--add Microsoft.VisualStudio.Component.Windows10SDK ^
+--add Microsoft.VisualStudio.Component.Windows11SDK.22621 > nul 2> nul
 
 call "%devdir%\cfgs\shin"
 
-code --install-extension ms-vscode.cpptools
-code --install-extension james-yu.latex-workshop
-code --install-extension ms-python.python
-code --install-extension reditorsupport.r
+call code --install-extension ms-vscode.cpptools
+call code --install-extension james-yu.latex-workshop
+call code --install-extension ms-python.python
+call code --install-extension reditorsupport.r
 
 rem pip install --requirement "%devdir%\cfgs\requirements.txt"
 
 :after_install
 
-reg import "%devdir%\cfgs\w32_cfg.reg"
+call taskkill /f /im explorer.exe
+call reg import "%devdir%\cfgs\w32_cfg.reg"
+start explorer
 
 move "%devdir%\bin\srm.bat" "%mydir%\scrap\srm.bat_%random%"
 copy "%devdir%\cfgs\srm.bat" "%devdir%\bin\srm.bat" 
@@ -75,7 +78,7 @@ copy "%devdir%\cfgs\vscin.bat" "%devdir%\bin\vscin.bat"
 call srm "%devdir%\bin\venvin.bat"
 copy "%devdir%\cfgs\venvin.bat" "%devdir%\bin\venvin.bat" 
 
-powershell -noprofile -file "%devdir%\cfgs\cmd_cfg.ps1"
+call powershell -noprofile -file "%devdir%\cfgs\cmd_cfg.ps1"
 
 mkdir "%userprofile%\appdata\local\nvim"
 call srm "%userprofile%\appdata\local\nvim\init.vim"
