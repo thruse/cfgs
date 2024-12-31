@@ -1,19 +1,31 @@
 #!/usr/bin/env bash
-deactivate
-if [ "$1" = "--" ]
-then
-    VIRTUAL_ENV_DISABLE_PROMPT=1
-    . "$DEVDIR/.venv/bin/activate"
-    unset VIRTUAL_ENV_DISABLE_PROMPT
-elif [ -f .venv/bin/activate ]
-then
-    . .venv/bin/activate
-elif [ -f "$1/bin/activate" ]
-then
-    . "$1/bin/activate"
-else
-    VIRTUAL_ENV_DISABLE_PROMPT=1
-    . "$DEVDIR/.venv/bin/activate"
-    unset VIRTUAL_ENV_DISABLE_PROMPT
+if [ "$(basename "$(readlink -f "$0")")" = "venvin" ] ; then
+    echo error: venvin must be sourced
+    exit 1
 fi
+
+default_venv ()
+{
+    . "$DEVDIR/.venv/bin/activate"
+    export PS1=$_OLD_VIRTUAL_PS1
+}
+
+deactivate
+
+if [ "$1" = "--" ] ; then
+    default_venv
+elif [ "$1" = "" ] ; then
+    if [ -f .venv/bin/activate ] ; then
+        . .venv/bin/activate
+    else
+        default_venv
+    fi
+elif [ -f "$1/.venv/bin/activate" ] ; then
+    cd "$1"
+    . "$1/.venv/bin/activate"
+else
+    default_venv
+fi
+
+unset -f default_venv
 

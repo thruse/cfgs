@@ -1,4 +1,5 @@
 @echo off
+setlocal
 
 mkdir .vscode > nul 2> nul
 pushd .vscode

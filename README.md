@@ -12,6 +12,7 @@ Make sure to install non-games in their default locations.
 This setup works on modern systems. (Currently macOS and Windows.)
 Install things for the first time with `cfg`, but delete things manually to get `cfg` to reinstall them.
 For more things to add (for example automation of macOS system settings) look at https://github.com/mathiasbynens/dotfiles and https://github.com/holman/dotfiles.
+`venvin` only works with `venv`s called `.venv`.
 ### Possibly useful things
 * `powershell -c winget list ^| select-string winget` because `winget list --source winget` doesn't work
 * `brew uninstall --zap formula-name` may fully uninstall all files related to `formula-name`.
@@ -24,8 +25,9 @@ For more things to add (for example automation of macOS system settings) look at
 * Add more of my usual directories to `cfg` (forgot some)
 * macOS settings (set text size?)
 * Perhaps do more in PowerShell on Windows
-* Add `shin` to my `bin` (think about this) (maybe not)
-* AuCTeX/LaTeX workflow (see `$MYDIR/dev/tmp/auctex_test`)
+* Add `shin` to my `bin` (think about this) (maybe not) (probably no point, shin will have already been called anyway by the time the `bin` is on `path`)
+* AuCTeX/LaTeX workflow (see `$DEVDIR/tmp/auctex_test` on my mac)
 * Linux support
 * Possibly install a newer version of bash from homebrew. Don't see much point in this though.
+* Fix some registry entries not getting set -- possible process needs to be killed to make it work (tried explorer already)
 

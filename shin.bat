@@ -1,11 +1,10 @@
-rem @echo off
+@echo off
 
 call "%userprofile%\.setdirs"
 
 cd "%devdir%"
 
 call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
-echo on
 
 setlocal
 
@@ -21,8 +20,6 @@ set r_project=%programfiles%\r\r-4.4.2\bin
 
 endlocal & set path=%my_bin%;%nvim%;%vscode%;%emacs%;%git%;%seven_zip%;%miktex%;%python%;%r_project%;%path%
 
-set VIRTUAL_ENV_DISABLE_PROMPT=1
 call "%devdir%\.venv\scripts\activate"
-set VIRTUAL_ENV_DISABLE_PROMPT=
-echo on
+set prompt=%_old_virtual_prompt%
 

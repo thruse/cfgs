@@ -8,9 +8,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PATH="$DEVDIR/bin:$PATH"
 
-VIRTUAL_ENV_DISABLE_PROMPT=1
 . "$DEVDIR/.venv/bin/activate"
-unset VIRTUAL_ENV_DISABLE_PROMPT
+export PS1=$_OLD_VIRTUAL_PS1
 
 runemacs ()
 {

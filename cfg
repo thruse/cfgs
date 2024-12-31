@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+if [ ! "$(basename "$(readlink -f "$0")")" = "cfg" ] ; then
+    echo error: cfg must not be sourced
+    exit 1
+fi
+
+sscp ()
+{
+    # soft silent copy
+    srm "$2" > /dev/null 2> /dev/null
+    cp "$1" "$2"
+}
+
 MYDIR="$(realpath "$(dirname "$(readlink -f "$0")")/../..")"
 DEVDIR="$(realpath "$(dirname "$(readlink -f "$0")")/..")"
 
@@ -7,16 +19,16 @@ echo "#!/usr/bin/env bash" > "$HOME/.setdirs"
 echo "export MYDIR=\"$MYDIR\"" >> "$HOME/.setdirs"
 echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/.setdirs"
 
-mkdir "$DEVDIR/bin"
-mkdir "$DEVDIR/tmp"
-mkdir "$DEVDIR/archive"
+mkdir -p "$DEVDIR/bin"
+mkdir -p "$DEVDIR/tmp"
+mkdir -p "$DEVDIR/archive"
 
-mkdir "$MYDIR/tmp"
-mkdir "$MYDIR/games"
-mkdir "$MYDIR/vids"
-mkdir "$MYDIR/misc_programs"
-mkdir "$MYDIR/misc"
-mkdir "$MYDIR/scrap"
+mkdir -p "$MYDIR/tmp"
+mkdir -p "$MYDIR/games"
+mkdir -p "$MYDIR/vids"
+mkdir -p "$MYDIR/misc_programs"
+mkdir -p "$MYDIR/misc"
+mkdir -p "$MYDIR/scrap"
 
 if [ "$(uname)" = "Darwin" ]
 then
@@ -41,34 +53,27 @@ then
     killall Dock
 fi
 
-mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM"
+mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM" > /dev/null 2> /dev/null
 cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"
 chmod +x "$DEVDIR/bin/srm"
 
-srm "$DEVDIR/bin/vscin"
-cp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
+sscp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
 chmod +x "$DEVDIR/bin/vscin"
 
-srm "$DEVDIR/bin/runemacs"
-cp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
+sscp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
 chmod +x "$DEVDIR/bin/runemacs"
 
-srm "$DEVDIR/bin/venvin"
-cp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
+sscp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
-srm "$HOME/.bash_profile"
-cp "$DEVDIR/cfgs/.bash_profile" "$HOME/.bash_profile"
+sscp "$DEVDIR/cfgs/.bash_profile" "$HOME/.bash_profile"
 
 mkdir -p "$HOME/.config/nvim"
-srm "$HOME/.config/nvim/init.vim"
-cp "$DEVDIR/cfgs/init.vim" "$HOME/.config/nvim/init.vim"
+sscp "$DEVDIR/cfgs/init.vim" "$HOME/.config/nvim/init.vim"
 
 mkdir -p "$HOME/.emacs.d/baks"
 mkdir -p "$HOME/.emacs.d/autosaves"
 cat /dev/null > "$HOME/.emacs.d/custom.el"
-srm "$HOME/.emacs.d/init.el"
-cp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
+sscp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
 
-srm "$HOME/.gitconfig"
-cp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
+sscp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
 
