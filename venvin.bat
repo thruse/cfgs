@@ -1,45 +1,50 @@
 @echo off
+set arg1=%~1
 goto main
 
 :default_venv
 call "%devdir%\.venv\scripts\activate"
 set prompt=%_old_virtual_prompt%
-goto end
+exit /b 0
 
 :try_cd_venv
 if exist .venv\scripts\activate.bat (
     call .venv\scripts\activate.bat
 ) else (
-    goto default_venv
+    call :default_venv
 )
-goto end
+exit /b 0
 
 :path_venv
 cd "%arg1%"
 call "%arg1%\.venv\scripts\activate"
-goto end
+exit /b 0
 
 :try_path_venv
 if exist "%arg1%\.venv\scripts\activate.bat" (
-    call path_venv
+    call :path_venv
 ) else (
-    goto default_venv
+    call :default_venv
 )
-goto end
+exit /b 0
+
+:try_venv
+if "%arg1%" == "" (
+    call :try_cd_venv
+) else (
+    call :try_path_venv
+)
+exit /b 0
 
 :main
 
 call deactivate
 
 if "%arg1%" == "--" (
-    goto default_venv
+    call :default_venv
 ) else (
-    if "%arg1%" == "" (
-        goto try_cd_venv
-    ) else (
-        goto try_path_venv
-    )
+    call :try_venv
 )
 
-:end
+set arg1=
 

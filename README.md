@@ -13,6 +13,9 @@ This setup works on modern systems. (Currently macOS and Windows.)
 Install things for the first time with `cfg`, but delete things manually to get `cfg` to reinstall them.
 For more things to add (for example automation of macOS system settings) look at https://github.com/mathiasbynens/dotfiles and https://github.com/holman/dotfiles.
 `venvin` only works with `venv`s called `.venv`.
+Only make files and directories with names following these rules
+* start with a letter
+* contain letters, numbers and underscores only
 ### Possibly useful things
 * `powershell -c winget list ^| select-string winget` because `winget list --source winget` doesn't work
 * `brew uninstall --zap formula-name` may fully uninstall all files related to `formula-name`.
@@ -30,4 +33,5 @@ For more things to add (for example automation of macOS system settings) look at
 * Linux support
 * Possibly install a newer version of bash from homebrew. Don't see much point in this though.
 * Fix some registry entries not getting set -- possible process needs to be killed to make it work (tried explorer already)
+* Possibly use `--` more (as in `if [ ! "$(basename "$(readlink -f -- "$0")")" = "cfg" ] ; then` but it's difficult to tell when it's available and where it can be used.
 

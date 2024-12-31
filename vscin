@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir .vscode > /dev/null 2> /dev/null
+mkdir -p .vscode > /dev/null 2> /dev/null
 pushd .vscode > /dev/null
 srm settings.json > /dev/null 2> /dev/null
 cp "$DEVDIR/cfgs/settings.json" settings.json
