@@ -52,7 +52,7 @@ call "%programfiles(x86)%\microsoft visual studio\installer\setup" modify --quie
 --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
 --add Microsoft.VisualStudio.Component.VC.Redist.14.Latest ^
 --add Microsoft.VisualStudio.Component.Windows10SDK ^
---add Microsoft.VisualStudio.Component.Windows11SDK.22621 > nul 2> nul
+--add Microsoft.VisualStudio.Component.Windows11SDK.22621
 
 call "%devdir%\cfgs\shin"
 

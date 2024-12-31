@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+emacs --eval '(select-frame-set-input-focus (selected-frame))' "$@"
+

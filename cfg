@@ -49,6 +49,10 @@ srm "$DEVDIR/bin/vscin"
 cp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
 chmod +x "$DEVDIR/bin/vscin"
 
+srm "$DEVDIR/bin/runemacs"
+cp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
+chmod +x "$DEVDIR/bin/runemacs"
+
 srm "$DEVDIR/bin/venvin"
 cp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
