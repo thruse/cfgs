@@ -16,7 +16,7 @@ if exist .venv\scripts\activate.bat (
 exit /b 0
 
 :path_venv
-cd "%arg1%"
+cd /d "%arg1%"
 call "%arg1%\.venv\scripts\activate"
 exit /b 0
 

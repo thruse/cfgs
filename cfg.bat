@@ -78,6 +78,7 @@ mkdir "%mydir%\games"
 mkdir "%mydir%\vids"
 mkdir "%mydir%\misc_programs"
 mkdir "%mydir%\misc"
+mkdir "%mydir%\maths"
 mkdir "%mydir%\scrap"
 
 if "%~1" == "--install" (
@@ -106,4 +107,6 @@ type nul > "%userprofile%\appdata\roaming\.emacs.d\custom.el"
 call :sscp "%devdir%\cfgs\init.el" "%userprofile%\appdata\roaming\.emacs.d\init.el" 
 
 call :sscp "%devdir%\cfgs\.gitconfig" "%userprofile%\.gitconfig" 
+
+mklink /d "%mydir%\maths\maths" "%mydir%\g\maths"
 

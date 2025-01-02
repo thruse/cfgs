@@ -28,6 +28,7 @@ mkdir -p "$MYDIR/games"
 mkdir -p "$MYDIR/vids"
 mkdir -p "$MYDIR/misc_programs"
 mkdir -p "$MYDIR/misc"
+mkdir -p "$MYDIR/maths"
 mkdir -p "$MYDIR/scrap"
 
 if [ "$(uname)" = "Darwin" ] ; then
@@ -73,4 +74,6 @@ cat /dev/null > "$HOME/.emacs.d/custom.el"
 sscp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
 
 sscp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
+
+ln -s "$MYDIR/g/maths" "$MYDIR/maths/maths"
 

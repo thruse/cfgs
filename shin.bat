@@ -2,7 +2,7 @@
 
 call "%userprofile%\.setdirs"
 
-cd "%devdir%"
+cd /d "%devdir%"
 
 call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
 

@@ -1,8 +1,22 @@
 # Configurations (cfgs)
 ## Steps for setting up on a new machine
+* Decide what you want your directory to be. For the purposes of these instructions, let this directory be `~/foo`.
+* Install the `g` folder on Google Drive to ~/Downloads.
+* On Windows
+    * Install 7-Zip
+    * `mkdir "%userprofile%\foo\tmp\drive_downloads" 2> nul`
+    * `cd /d "%userprofile%\foo\tmp\drive_downloads"`
+    * `del *`
+    * `move "%userprofile%\downloads\g-*" .`
+    * `7z x "*.zip" -o"%userprofile%\foo"`
+* On Unix
+    * `mkdir -p "$HOME/foo/tmp/drive_downloads" 2> /dev/null`
+    * `cd "$HOME/foo/tmp/drive_downloads"`
+    * `rm *`
+    * `mv "$HOME/Downloads/g-* .`
+    * `unzip '*.zip' -d ~/foo`
 * On macOS install Homebrew by running `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`.
 * Install Git.
-* Decide what you want your directory to be. For the purposes of these instructions, let this directory be `~/foo`.
 * Clone this repository into `~/foo/dev`. (Most important step.)
 * Start a priviledged shell session.
 * Run `~/foo/dev/cfgs/cfg --install ; . ~/.bash_profile` or `%userprofile%/foo/dev/cfgs/cfg --install & %userprofile%/foo/dev/cfgs/shin`
