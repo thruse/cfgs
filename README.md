@@ -11,13 +11,15 @@
     * `cd /d "%userprofile%\foo\tmp\drive_downloads"`
     * `del *`
     * `move "%userprofile%\downloads\g-*" .`
+    * `del /q /s "%userprofile%\foo\g"`
     * `7z x "*.zip" -o"%userprofile%\foo"`
 * On Unix
     * `mkdir -p "$HOME/foo/tmp/drive_downloads" 2> /dev/null`
     * `cd "$HOME/foo/tmp/drive_downloads"`
     * `rm *`
-    * `mv "$HOME/Downloads/g-* .`
-    * `unzip '*.zip' -d ~/foo`
+    * `mv "$HOME/Downloads/g-*" .`
+    * `rm -rf "$HOME/foo/g"`
+    * `unzip '*.zip' -d "$HOME/foo"`
 * Install Git.
 * Clone this repository into `~/foo/dev`. (Most important step.)
 * Start a priviledged shell session.
