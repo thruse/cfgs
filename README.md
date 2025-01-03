@@ -37,7 +37,7 @@ For more things to add (for example automation of macOS system settings) look at
 
 Only make files and directories with names following these rules
 * start with a letter
-* contain letters, numbers and underscores only
+* contain letters, numbers and underscores only.
 
 ### Possibly useful things
 
@@ -49,6 +49,7 @@ Only make files and directories with names following these rules
 
 ## Todo
 
+* Improve `srm` to handle multiple files at once.
 * When I decide on some `pip` packages on `python`, include `requirements.txt` in the `cfg`. `pip freeze > requirements.txt`, `pip install --requirement /path/to/requirements.txt`
 * Add more non-dev programs to `cfg` (Discord, Gimp, OBS, VLC, Kindle?, ...)
 * Add more of my usual directories to `cfg` (forgot some)
