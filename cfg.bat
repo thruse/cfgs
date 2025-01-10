@@ -3,11 +3,11 @@ setlocal
 goto main
 
 :set_dir_symlink
-for %%i in ("%symlink_target%") do set current_directory=%%~dpi
+for %%i in ("%symlink_target%") do set current_path=%%~fi
 exit /b 0
 
 :set_dir_real
-set current_directory=%~dp0
+set current_path=%~f0
 exit /b 0
 
 :install
@@ -57,13 +57,13 @@ if defined symlink_target (
     call :set_dir_real
 )
 
-set current_directory=%current_directory:~0,-1%
+set mydir=%current_path%\..\..
+for %%i in ("%mydir%") do set mydir=%%~dpi
+set mydir=%mydir:~0,-1%
 
-set mydir=%current_directory%\..\..
-for %%i in ("%mydir%") do set mydir=%%~fi
-
-set devdir=%current_directory%\..
-for %%i in ("%devdir%") do set devdir=%%~fi
+set devdir=%current_path%\..
+for %%i in ("%devdir%") do set devdir=%%~dpi
+set devdir=%devdir:~0,-1%
 
 echo @echo off>"%userprofile%\.setdirs.bat"
 echo set mydir=%mydir%>>"%userprofile%\.setdirs.bat"
