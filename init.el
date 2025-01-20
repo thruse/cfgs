@@ -23,14 +23,7 @@
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 (setq preview-auto-cache-preamble t)
 
-(require 'evil)
-(evil-set-undo-system 'undo-redo)
-(evil-set-initial-state 'ess-watch-mode 'emacs)
-(evil-set-initial-state 'inferior-ess-r-mode 'emacs)
-(evil-mode 1)
-
 (load custom-file)
-
 
 ;; Commands I will forget (some are old):
 
