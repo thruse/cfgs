@@ -23,3 +23,5 @@ endlocal & set path=%my_bin%;%nvim%;%vscode%;%emacs%;%git%;%seven_zip%;%miktex%;
 call "%devdir%\.venv\scripts\activate"
 set prompt=%_old_virtual_prompt%
 
+call "%devdir%\cfgs\local"
+

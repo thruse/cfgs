@@ -14,3 +14,5 @@ export PS1=$_OLD_VIRTUAL_PS1
 export BASH_SILENCE_DEPRECATION_WARNING=1
 bind 'set mark-symlinked-directories on'
 
+. "$DEVDIR/cfgs/local"
+
