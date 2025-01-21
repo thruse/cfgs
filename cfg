@@ -30,26 +30,7 @@ mkdir -p "$MYDIR/misc_programs"
 mkdir -p "$MYDIR/misc"
 mkdir -p "$MYDIR/maths"
 mkdir -p "$MYDIR/scrap"
-
-if [ "$(uname)" = "Darwin" ] ; then
-    if [ "$1" = "--install" ] ; then
-        if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null) ; then
-            softwareupdate --install-rosetta --agree-to-license
-        fi
-        eval $(/opt/homebrew/bin/brew shellenv)
-        brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
-
-        python3 -m venv "$DEVDIR/.venv"
-
-        . "$DEVDIR/cfgs/bash.bash_profile"
-
-        # pip install --requirement "%devdir%\cfgs\requirements.txt"
-    fi
-
-    defaults write com.apple.dock tilesize -int 16
-    defaults write com.apple.dock size-immutable -bool true
-    killall Dock
-fi
+mkdir -p "$MYDIR/latex"
 
 mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM" > /dev/null 2> /dev/null
 cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"
@@ -76,4 +57,24 @@ sscp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
 sscp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
 
 ln -s "$MYDIR/g/maths" "$MYDIR/maths/maths"
+
+if [ "$(uname)" = "Darwin" ] ; then
+    if [ "$1" = "--install" ] ; then
+        if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null) ; then
+            softwareupdate --install-rosetta --agree-to-license
+        fi
+        eval $(/opt/homebrew/bin/brew shellenv)
+        brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
+
+        python3 -m venv "$DEVDIR/.venv"
+
+        . "$DEVDIR/cfgs/bash.bash_profile"
+
+        # pip install --requirement "%devdir%\cfgs\requirements.txt"
+    fi
+
+    defaults write com.apple.dock tilesize -int 16
+    defaults write com.apple.dock size-immutable -bool true
+    killall Dock
+fi
 

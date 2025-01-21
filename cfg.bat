@@ -80,14 +80,7 @@ mkdir "%mydir%\misc_programs"
 mkdir "%mydir%\misc"
 mkdir "%mydir%\maths"
 mkdir "%mydir%\scrap"
-
-if "%~1" == "--install" (
-    call :install
-)
-
-call taskkill /f /im explorer.exe
-call reg import "%devdir%\cfgs\w32_cfg.reg"
-start explorer
+mkdir "%mydir%\latex"
 
 move "%devdir%\bin\srm.bat" "%mydir%\scrap\srm.bat_%random%" > nul 2> nul
 copy "%devdir%\cfgs\srm.bat" "%devdir%\bin\srm.bat" 
@@ -109,4 +102,12 @@ call :sscp "%devdir%\cfgs\init.el" "%userprofile%\appdata\roaming\.emacs.d\init.
 call :sscp "%devdir%\cfgs\.gitconfig" "%userprofile%\.gitconfig" 
 
 mklink /d "%mydir%\maths\maths" "%mydir%\g\maths"
+
+if "%~1" == "--install" (
+    call :install
+)
+
+call taskkill /f /im explorer.exe
+call reg import "%devdir%\cfgs\w32_cfg.reg"
+start explorer
 

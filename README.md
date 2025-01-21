@@ -11,7 +11,7 @@
     * `cd /d "%userprofile%\foo\tmp\drive_downloads"`
     * `del *`
     * `move "%userprofile%\downloads\g-*" .`
-    * `del /q /s "%userprofile%\foo\g"`
+    * `rmdir /q /s "%userprofile%\foo\g"`
     * `7z x "*.zip" -o"%userprofile%\foo"`
 * On Unix
     * `mkdir -p "$HOME/foo/tmp/drive_downloads" 2> /dev/null`
