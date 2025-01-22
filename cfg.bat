@@ -37,6 +37,9 @@ call code --install-extension james-yu.latex-workshop
 call code --install-extension ms-python.python
 call code --install-extension reditorsupport.r
 
+call miktex packages update-package-database
+call miktex packages update
+
 rem pip install --requirement "%devdir%\cfgs\requirements.txt"
 
 exit /b 0
