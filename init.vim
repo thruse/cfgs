@@ -1,6 +1,11 @@
 colorscheme koehler
 
-set makeprg=.\\build
+if has('win32')
+    set makeprg=build
+elseif has('unix')
+    set makeprg=./build
+endif
+
 set expandtab
 set shiftwidth=4
 set tabstop=4
