@@ -39,6 +39,9 @@ chmod +x "$DEVDIR/bin/srm"
 sscp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
 chmod +x "$DEVDIR/bin/vscin"
 
+sscp "$DEVDIR/cfgs/gdriveup" "$DEVDIR/bin/gdriveup"
+chmod +x "$DEVDIR/bin/gdriveup"
+
 sscp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
 chmod +x "$DEVDIR/bin/runemacs"
 

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ ! -d "$MYDIR/tmp/drive_downloads" ] ; then
+    mkdir "$MYDIR/tmp/drive_downloads"
+fi
+
+pushd "$MYDIR/tmp/drive_downloads" > /dev/null
+rm -f *
+mv -f "$HOME/Downloads/g-*" .
+rm -rf "$MYDIR/g"
+unzip '*.zip' -d "$MYDIR"
+popd > /dev/null
+

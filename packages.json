@@ -52,6 +52,9 @@
 					"PackageIdentifier" : "OBSProject.OBSStudio"
 				},
 				{
+					"PackageIdentifier" : "calibre.calibre"
+				},
+				{
 					"PackageIdentifier" : "VideoLAN.VLC"
 				}
 			],

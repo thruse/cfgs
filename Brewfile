@@ -21,5 +21,6 @@ cask "spotify"
 cask "discord"
 cask "gimp"
 cask "obs"
+cask "calibre"
 cask "vlc"
 

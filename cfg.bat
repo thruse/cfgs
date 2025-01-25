@@ -90,7 +90,9 @@ copy "%devdir%\cfgs\srm.bat" "%devdir%\bin\srm.bat"
 
 call :sscp "%devdir%\cfgs\vscin.bat" "%devdir%\bin\vscin.bat" 
 
-call :sscp "%devdir%\cfgs\venvin.bat" "%devdir%\bin\venvin.bat" 
+call :sscp "%devdir%\cfgs\gdriveup.bat" "%devdir%\bin\gdriveup.bat"
+
+call :sscp "%devdir%\cfgs\venvin.bat" "%devdir%\bin\venvin.bat"
 
 call powershell -noprofile -file "%devdir%\cfgs\cmd_cfg.ps1"
 
