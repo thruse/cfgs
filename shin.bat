@@ -1,10 +1,13 @@
-@echo off
+rem @echo off
 
 call "%userprofile%\.setdirs"
+echo on
 
 cd /d "%devdir%"
 
-call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
+call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64
+rem call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
+echo on
 
 setlocal
 
@@ -21,6 +24,7 @@ set r_project=%programfiles%\r\r-4.4.2\bin
 endlocal & set path=%my_bin%;%nvim%;%vscode%;%emacs%;%git%;%seven_zip%;%miktex%;%python%;%r_project%;%path%
 
 call "%devdir%\.venv\scripts\activate"
+echo on
 set prompt=%_old_virtual_prompt%
 
 if exist "%devdir%\cfgs\local.bat" (

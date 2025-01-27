@@ -23,6 +23,15 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Tools")))
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
+(defun thruse-tex-build ()
+  (interactive)
+  (compile "build")
+  (TeX-view)
+  (other-window 1))
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (define-key LaTeX-mode-map (kbd "C-c b") 'thruse-tex-build)))
+
 (load custom-file)
 
 ;; Commands I will forget (some are old):

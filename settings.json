@@ -1,52 +1,9 @@
 {
-    // Default settings
-    // UI customisation
-
-    // Extensions
-    // R
-    "r.rpath.windows": "C:/Program Files/R/R-4.4.0/bin/x64/R.exe", // - Windows
-    "r.rpath.mac": "/opt/homebrew/Cellar/r/4.4.0/lib/R/bin/R", // -macOS
-    // CMake
-    "cmake.configureOnOpen": false,
-    // C/C++
-    // Hex Editor
-    "hexeditor.columnWidth": 8,
-    "hexeditor.showDecodedText": true,
-    "hexeditor.defaultEndianness": "little",
-    "hexeditor.inspectorType": "aside",
-    // Latex Workshop
     "latex-workshop.latex.tools": [
-        {
-            "name": "latexmk",
-            "command": "latexmk",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
-                "%DOC%"
-            ],
-            "env": {}
-        },
-        {
-            "name": "xelatex",
-            "command": "xelatex",
-            "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "%DOC%"
-            ],
-            "env": {}
-        },
         {
             "name": "pdflatex",
             "command": "pdflatex",
             "args": [
-                "-synctex=0",
-                "-interaction=nonstopmode",
-                "-file-line-error",
                 "%DOC%"
             ],
             "env": {}
@@ -58,98 +15,42 @@
                 "%DOCFILE%"
             ],
             "env": {}
-        },
-        {
-            // move pdf in directory above other files
-            "name": "pdf windows",
-            "command": "mv",
-            "args": [
-                "%OUTDIR_W32%\\%DOCFILE%.pdf",
-                "%DIR_W32%\\..\\"
-            ]
-          },
-          {
-            // move pdf in directory above other files
-            "name": "pdf linux & mac",
-            "command": "mv",
-            "args": [
-                "%OUTDIR%/%DOCFILE%.pdf",
-                "%DIR%/../"
-            ]
-          }
+        }
     ],
     "latex-workshop.latex.recipes": [
         {
-            // this is the recipe we want to use -- so keep it first in the list
-            "name": "bib, pdf (linux, mac)",
+            "name": "build pdf",
             "tools": [
                 "pdflatex",
                 "bibtex",
-                "pdflatex",
-                "pdflatex",    // pdflatex is done twice after bibtex to resolve references and labels
-                "pdf linux & mac"
-            ]
-        },
-        {
-            "name": "bib, pdf (windows)",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex",    // pdflatex is done twice after bibtex to resolve references and labels
-                "pdf windows"
-            ]
-        },
-        {
-            "name": "pdf (linux, mac)",
-            "tools": [
-                "pdflatex",
-                "pdf linux & mac"
-            ]
-        },
-        {
-            "name": "pdfLaTeX`×2",
-            "tools": [
                 "pdflatex",
                 "pdflatex"
-            ]
-        },
-        {
-            "name": "pdfLaTeX",
-            "tools": [
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "latexmk 🔃",
-            "tools": [
-                "latexmk"
-            ]
-        },
-        {
-            "name": "xelatex",
-            "tools": [
-                "xelatex"
-            ]
-        },
-        {
-            "name": "xelatex ➞ bibtex ➞ xelatex`×2",
-            "tools": [
-                "xelatex",
-                "bibtex",
-                "xelatex",
-                "xelatex"
             ]
         }
     ],
-    "latex-workshop.latex.autoBuild.run": "never", // Don't make the pdf unless I press run
+    "latex-workshop.latex.autoBuild.run": "never",
 
-    // General
-    "extensions.autoUpdate": false,
-    "security.workspace.trust.enabled": false, // Stop asking if I trust the folder. (Invariably, I made the folder.)
-    "telemetry.telemetryLevel": "off", // turn off Microsoft collecting personal information
-    // "terminal.explorerKind": "integrated", // integrated or external
-    // "terminal.external.windowsExec": "", // -Windows
-    "terminal.external.osxExec": "Alacritty.app", // -macOS
-    "window.confirmSaveUntitledWorkspace": false,
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingComments": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.autoSurround": "never",
+    "editor.glyphMargin": false,
+    "editor.lightbulb.enabled": "off",
+    "editor.lineNumbers": "off",
+    "editor.minimap.enabled": false,
+    "editor.parameterHints.enabled": false,
+    "editor.quickSuggestions": {
+        "other": "off"
+    },
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.horizontalScrollbarSize": 0,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "editor.stickyScroll.enabled": false,
+    "window.commandCenter": false,
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.editor.showTabs": "none",
+    "workbench.layoutControl.enabled": false
 }
+
