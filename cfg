@@ -45,6 +45,9 @@ chmod +x "$DEVDIR/bin/gdriveup"
 sscp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
 chmod +x "$DEVDIR/bin/runemacs"
 
+sscp "$DEVDIR/cfgs/juplab" "$DEVDIR/bin/juplab"
+chmod +x "$DEVDIR/bin/juplab"
+
 sscp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
 
 sscp "$DEVDIR/cfgs/.bash_profile" "$HOME/.bash_profile"
