@@ -55,6 +55,9 @@
 					"PackageIdentifier" : "calibre.calibre"
 				},
 				{
+					"PackageIdentifier" : "Piriform.Speccy"
+				},
+				{
 					"PackageIdentifier" : "VideoLAN.VLC"
 				}
 			],
