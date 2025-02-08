@@ -3,11 +3,13 @@ rem @echo off
 call "%userprofile%\.setdirs"
 echo on
 
-cd /d "%devdir%"
+cd /d "%userprofile%"
 
 call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64
 rem call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
 echo on
+
+cd /d "%devdir%"
 
 setlocal
 
