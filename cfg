@@ -63,6 +63,7 @@ sscp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
 sscp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
 
 ln -s "$MYDIR/g/maths" "$MYDIR/maths/maths"
+ln -s "$MYDIR/g/audio/music" "$HOME/Music/my_music"
 
 if [ "$(uname)" = "Darwin" ] ; then
     if [ "$1" = "--install" ] ; then
