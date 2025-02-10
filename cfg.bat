@@ -113,7 +113,7 @@ if "%~1" == "--install" (
     call :install
 )
 
-call taskkill /f /im explorer.exe
-call reg import "%devdir%\cfgs\w32_cfg.reg"
-start explorer
+rem call taskkill /f /im explorer.exe
+rem call reg import "%devdir%\cfgs\w32_cfg.reg"
+rem start explorer
 

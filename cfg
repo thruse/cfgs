@@ -82,6 +82,6 @@ if [ "$(uname)" = "Darwin" ] ; then
 
     defaults write com.apple.dock tilesize -int 16
     defaults write com.apple.dock size-immutable -bool true
-    killall Dock
+    # killall Dock
 fi
 
