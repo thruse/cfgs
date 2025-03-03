@@ -31,6 +31,7 @@ mkdir -p "$MYDIR/misc"
 mkdir -p "$MYDIR/maths"
 mkdir -p "$MYDIR/scrap"
 mkdir -p "$MYDIR/latex"
+mkdir -p "$MYDIR/calibre_library"
 
 mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM" > /dev/null 2> /dev/null
 cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"

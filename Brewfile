@@ -15,6 +15,7 @@ vscode "james-yu.latex-workshop"
 vscode "ms-python.python"
 vscode "reditorsupport.r"
 
+cask "firefox"
 cask "google-chrome"
 cask "steam"
 cask "spotify"

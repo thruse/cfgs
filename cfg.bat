@@ -84,6 +84,7 @@ mkdir "%mydir%\misc"
 mkdir "%mydir%\maths"
 mkdir "%mydir%\scrap"
 mkdir "%mydir%\latex"
+mkdir "%mydir%\calibre_library"
 
 move "%devdir%\bin\srm.bat" "%mydir%\scrap\srm.bat_%random%" > nul 2> nul
 copy "%devdir%\cfgs\srm.bat" "%devdir%\bin\srm.bat" 
