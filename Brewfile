@@ -24,5 +24,5 @@ cask "gimp"
 cask "obs"
 cask "calibre"
 cask "vlc"
-brew "bitwarden"
+cask "bitwarden"
 
