@@ -76,7 +76,7 @@ if [ "$(uname)" = "Darwin" ] ; then
 
         python3 -m venv "$DEVDIR/.venv"
 
-        . "$DEVDIR/cfgs/bash.bash_profile"
+        . "$DEVDIR/cfgs/.bash_profile"
 
         # pip install --requirement "%devdir%\cfgs\requirements.txt"
     fi
