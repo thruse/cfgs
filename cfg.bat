@@ -107,7 +107,6 @@ call :sscp "%devdir%\cfgs\init.el" "%userprofile%\appdata\roaming\.emacs.d\init.
 
 call :sscp "%devdir%\cfgs\.gitconfig" "%userprofile%\.gitconfig" 
 
-mklink /d "%mydir%\maths\maths" "%mydir%\g\maths"
 mklink /d "%userprofile%\music\my_music" "%mydir%\g\audio\music"
 
 if "%~1" == "--install" (
