@@ -29,6 +29,10 @@
         }
     ],
     "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.message.badbox.show": "none",
+    "latex-workshop.message.latexlog.exclude": [
+        "Token not allowed in a PDF string"
+    ],
 
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingComments": "never",
@@ -48,7 +52,7 @@
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.stickyScroll.enabled": false,
     "window.commandCenter": false,
-    "workbench.activityBar.location": "hidden",
+    "workbench.activityBar.location": "bottom",
     "workbench.editor.editorActionsLocation": "hidden",
     "workbench.editor.showTabs": "none",
     "workbench.layoutControl.enabled": false

@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-mkdir -p .vscode > /dev/null 2> /dev/null
-pushd .vscode > /dev/null
-srm settings.json > /dev/null 2> /dev/null
-cp "$DEVDIR/cfgs/settings.json" settings.json
-popd > /dev/null
+if [ -e .vscode] ; then
+    echo "error: .vscode already exists"
+else
+    mkdir -p .vscode > /dev/null 2> /dev/null
+    pushd .vscode > /dev/null
+    srm settings.json > /dev/null 2> /dev/null
+    cp "$DEVDIR/cfgs/settings.json" settings.json
+    popd > /dev/null
+fi
 
