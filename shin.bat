@@ -4,8 +4,10 @@ call "%userprofile%\.setdirs"
 
 cd /d "%userprofile%"
 
+set VSCMD_SKIP_SENDTELEMETRY=1
 rem call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64
 call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
+set VSCMD_SKIP_SENDTELEMETRY=
 
 cd /d "%devdir%"
 
