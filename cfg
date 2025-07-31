@@ -48,7 +48,7 @@ cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 
 if [ "$1" = "--install" ] ; then
-    "$BINDIR/terminal" "$CFGSDIR/install"
+    "$BINDIR/terminal" bash "$CFGSDIR/install"
 fi
 
 . "$CFGSDIR/envin"
