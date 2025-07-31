@@ -63,5 +63,5 @@ Only make files and directories with names following these rules
 - Linux support
 - Possibly install a newer version of bash from homebrew. Don't see much point in this though.
 - Fix some registry entries not getting set -- possible process needs to be killed to make it work (tried explorer already)
-- Possibly use `--` more (as in `if [ ! "$(basename "$(readlink -f -- "$0")")" = "cfg" ] ; then` but it's difficult to tell when it's available and where it can be used.
+- Possibly use `--` more (as in `if [ ! "$(basename "$(readlink -f -- "$0")")" = "cfg" ] ; then`) but it's difficult to tell when it's available and where it can be used.
 
