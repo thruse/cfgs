@@ -10,6 +10,7 @@ call winget import %WINGETOPTS% --import-file "%CFGSDIR%\packages.json" > nul
 if not exist "%PROGRAMFILES%\emacs" (
     call winget install --source winget --silent %WINGETOPTS% --exact --id GNU.Emacs --version 29.4 > nul
 )
+set WINGETOPTS=
 
 call "%LOCALAPPDATA%\Programs\Python\Python312\python" -m venv "%DEVDIR%\.venv"
 
@@ -49,6 +50,8 @@ set BINDIR=%DEVDIR%\bin
 echo @echo off>"%USERPROFILE%\.setdirs.bat"
 echo set MYDIR=%MYDIR%>>"%USERPROFILE%\.setdirs.bat"
 echo set DEVDIR=%DEVDIR%>>"%USERPROFILE%\.setdirs.bat"
+echo set CFGSDIR=%CFGSDIR%>>"%USERPROFILE%\.setdirs.bat"
+echo set BINDIR=%BINDIR%>>"%USERPROFILE%\.setdirs.bat"
 
 mkdir "%BINDIR%" > nul 2> nul
 mkdir "%DEVDIR%\tmp" > nul 2> nul
@@ -74,13 +77,13 @@ copy "%CFGSDIR%\init.el" "%APPDATA%\.emacs.d\init.el" > nul
 
 copy "%CFGSDIR%\.gitconfig" "%USERPROFILE%\.gitconfig" > nul
 
+if "%~1" == "--install" (
+    start "Installing" "%CFGSDIR%\install"
+)
+
+call "%CFGSDIR%\envin"
+
+rem soon we will automate getting "%MYDIR%\g"
 rmdir /s /q "%USERPROFILE%\music\my_music" > nul 2> nul
 xcopy "%MYDIR%\g\music" "%USERPROFILE%\music\my_music" /e /i > nul
 
-if "%~1" == "--install" (
-    call :install
-)
-
-set CFGSDIR=
-set BINDIR=
-set WINGETOPTS=

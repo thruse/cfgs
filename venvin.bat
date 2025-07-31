@@ -1,5 +1,4 @@
 @echo off
-set ARG1=%~1
 goto main
 
 :default_venv
@@ -16,14 +15,10 @@ if exist .venv\scripts\activate.bat (
 exit /b 0
 
 :main
-
 call deactivate
-
-if "%ARG1%" == "" (
+if "%~1" == "" (
     call :try_cd_venv
 ) else (
     call :default_venv
 )
-
-set ARG1=
 

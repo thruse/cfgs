@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ -n "$1" ] ; then
+    osascript "$CFGSDIR/terminal.scpt" "$(realpath "$1")" > /dev/null
+else
+    osascript "$CFGSDIR/terminal.scpt" > /dev/null
+fi

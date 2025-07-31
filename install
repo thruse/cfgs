@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+announce ()
+{
+    echo "* * *"
+    echo "$1"
+    echo "* * *"
+}
+
+if [ "$(uname)" = "Darwin" ] ; then
+    if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null) ; then
+        announce "Installing Rosetta"
+        softwareupdate --install-rosetta --agree-to-license
+        announce "Rosetta installed"
+        echo
+    fi
+
+    announce "Installing homebrew programs"
+    /opt/homebrew/bin/brew bundle install --no-upgrade --file="$CFGSDIR/Brewfile"
+    announce "Homebrew programs installed"
+    echo
+
+    announce "All program installations complete"
+    echo
+
+    announce "Setting up environment"
+    /opt/homebrew/bin/python3 -m venv "$DEVDIR/.venv"
+    . "$CFGSDIR/envin"
+    announce "Environment initialised"
+    echo
+
+    announce "Installing VS Code extensions"
+    code --install-extension ms-vscode.cpptools
+    code --install-extension james-yu.latex-workshop
+    code --install-extension ms-python.python
+    code --install-extension reditorsupport.r
+    announce "VS Code extensions installed"
+    echo
+
+    # announce Installing Python packages
+    # pip install --requirement "$CFGSDIR/requirements.txt"
+    # announce Installed Python packages
+    # echo
+fi
+
+unset -f announce

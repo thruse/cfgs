@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
-CFGSDIR="$(dirname "$0")"
-MYDIR="$(realpath "$(dirname "$0")/../..")"
-DEVDIR="$(realpath "$(dirname "$0")/..")"
+CFGSDIR="$(realpath "$(dirname "$0")")"
+MYDIR="$(realpath "$CFGSDIR/../..")"
+DEVDIR="$(realpath "$CFGSDIR/..")"
 BINDIR="$DEVDIR/bin"
 
 echo "#!/usr/bin/env bash" > "$HOME/.setdirs"
 echo "export MYDIR=\"$MYDIR\"" >> "$HOME/.setdirs"
 echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/.setdirs"
+echo "export CFGSDIR=\"$CFGSDIR\"" >> "$HOME/.setdirs"
+echo "export BINDIR=\"$BINDIR\"" >> "$HOME/.setdirs"
 
 mkdir "$BINDIR" > /dev/null 2> /dev/null
 mkdir "$DEVDIR/tmp" > /dev/null 2> /dev/null
@@ -26,6 +28,9 @@ chmod +x "$BINDIR/runemacs"
 cp "$CFGSDIR/juplab" "$BINDIR/juplab"
 chmod +x "$BINDIR/juplab"
 
+cp "$CFGSDIR/terminal" "$BINDIR/terminal"
+chmod +x "$BINDIR/terminal"
+
 cp "$CFGSDIR/venvin" "$BINDIR/venvin"
 
 cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
@@ -42,23 +47,15 @@ cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 
 cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 
+if [ "$1" = "--install" ] ; then
+    "$BINDIR/terminal" "$CFGSDIR/install"
+fi
+
+. "$CFGSDIR/envin"
+
+# can now do anything, it's like we just started a typical shell.
+
+# soon we will automate getting "$MYDIR/g"
 rm -r "$HOME/Music/my_music" > /dev/null 2> /dev/null
 cp -r "$MYDIR/g/music" "$HOME/Music/my_music"
-
-if [ "$(uname)" = "Darwin" ] ; then
-    if [ "$1" = "--install" ] ; then
-        if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null) ; then
-            softwareupdate --install-rosetta --agree-to-license > /dev/null
-        fi
-
-        eval $(/opt/homebrew/bin/brew shellenv)
-        brew bundle install --no-upgrade --file="$CFGSDIR/Brewfile" > /dev/null
-
-        python3 -m venv "$DEVDIR/.venv"
-
-        . "$CFGSDIR/.bash_profile"
-
-        # pip install --requirement "$CFGSDIR/requirements.txt"
-    fi
-fi
 

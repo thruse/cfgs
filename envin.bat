@@ -1,0 +1,48 @@
+@echo off
+
+set VSCMD_SKIP_SENDTELEMETRY=1
+call "%PROGRAMFILES%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
+
+set NVIMOLD=%NVIM%
+set VSCODEOLD=%VSCODE%
+set EMACSOLD=%EMACS%
+set GITOLD=%GIT%
+set SEVENZIPOLD=%SEVENZIP%
+set MIKTEXOLD=%MIKTEX%
+set PYTHONOLD=%PYTHON%
+set RPROJECTOLD=%RPROJECT%
+
+set NVIM=%PROGRAMFILES%\neovim\bin
+set VSCODE=%LOCALAPPDATA%\Programs\Microsoft VS Code\bin
+set EMACS=%PROGRAMFILES%\emacs\emacs-29.4\bin
+set GIT=%PROGRAMFILES%\git\cmd
+set SEVENZIP=%PROGRAMFILES%\7-zip
+set MIKTEX=%LOCALAPPDATA%\Programs\MiKTeX\miktex\bin\x64
+set PYTHON=%LOCALAPPDATA%\Programs\Python\Python312;%LOCALAPPDATA%\Programs\Python\Python312\Scripts
+set RPROJECT=%PROGRAMFILES%\r\r-4.4.2\bin
+
+set PATH=%NVIM%;%VSCODE%;%EMACS%;%GIT%;%SEVENZIP%;%MIKTEX%;%PYTHON%;%RPROJECT%;%PATH%
+
+set NVIM=%NVIMOLD%
+set VSCODE=%VSCODEOLD%
+set EMACS=%EMACSOLD%
+set GIT=%GITOLD%
+set SEVENZIP=%SEVENZIPOLD%
+set MIKTEX=%MIKTEXOLD%
+set PYTHON=%PYTHONOLD%
+set RPROJECT=%RPROJECTOLD%
+
+set NVIMOLD=
+set VSCODEOLD=
+set EMACSOLD=
+set GITOLD=
+set SEVENZIPOLD=
+set MIKTEXOLD=
+set PYTHONOLD=
+set RPROJECTOLD=
+
+set PATH=%BINDIR%;%PATH%
+
+call "%DEVDIR%\.venv\scripts\activate"
+set PROMPT=%_OLD_VIRTUAL_PROMPT%
+

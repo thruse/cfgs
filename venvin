@@ -9,4 +9,3 @@ else
     export PS1=$_OLD_VIRTUAL_PS1
 fi
 
-unset -f default_venv

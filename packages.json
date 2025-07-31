@@ -18,9 +18,6 @@
 					"PackageIdentifier" : "Git.Git"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.PowerToys"
-				},
-				{
 					"PackageIdentifier" : "7zip.7zip"
 				},
 				{
@@ -58,13 +55,13 @@
 					"PackageIdentifier" : "calibre.calibre"
 				},
 				{
-					"PackageIdentifier" : "Piriform.Speccy"
-				},
-				{
 					"PackageIdentifier" : "VideoLAN.VLC"
 				},
 				{
 					"PackageIdentifier" : "Bitwarden.Bitwarden"
+				},
+				{
+					"PackageIdentifier" : "Piriform.Speccy"
 				}
 			],
 			"SourceDetails" : 
