@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# soft remove
-
-mv -f "$1" "$MYDIR/scrap/$(basename "$1")_$RANDOM"
-

@@ -1,32 +1,12 @@
 #!/usr/bin/env bash
 
-if [ "$(basename "$(readlink -f -- "$0")")" = "venvin" ] ; then
-    echo error: venvin must be sourced
-    exit 1
-fi
-
-default_venv ()
-{
-    . "$DEVDIR/.venv/bin/activate"
-    export PS1=$_OLD_VIRTUAL_PS1
-}
-
 deactivate
 
-if [ "$1" = "--" ] ; then
-    default_venv
-elif [ "$1" = "" ] ; then
-    if [ -f .venv/bin/activate ] ; then
-        . .venv/bin/activate
-    else
-        default_venv
-    fi
-elif [ -f "$1/.venv/bin/activate" ] ; then
-    cd "$1"
-    . "$1/.venv/bin/activate"
+if [ "$1" = "" ] && [ -f .venv/bin/activate ] ; then
+    . .venv/bin/activate
 else
-    default_venv
+    . "$DEVDIR/.venv/bin/activate"
+    export PS1=$_OLD_VIRTUAL_PS1
 fi
 
 unset -f default_venv
-

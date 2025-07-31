@@ -1,0 +1,13 @@
+bitwarden
+firefox
+google_chrome
+spotify
+discord
+obs
+calibre
+neovim
+emacs
+vscode
+git
+git_credential_manager
+python

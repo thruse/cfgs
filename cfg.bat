@@ -1,119 +1,84 @@
 @echo off
-setlocal
 goto main
-
-:set_dir_symlink
-for %%i in ("%symlink_target%") do set current_path=%%~fi
-exit /b 0
-
-:set_dir_real
-set current_path=%~f0
-exit /b 0
 
 :install
 
-set winget_opts=--accept-source-agreements --accept-package-agreements --no-upgrade --disable-interactivity
+set WINGETOPTS=--accept-source-agreements --accept-package-agreements --no-upgrade --disable-interactivity
 
-call winget import %winget_opts% --import-file "%devdir%\cfgs\packages.json"
+call winget import %WINGETOPTS% --import-file "%CFGSDIR%\packages.json" > nul
 
-if not exist "%programfiles%\emacs" (
-    call winget install --source winget --silent %winget_opts% --exact --id GNU.Emacs --version 29.4
+if not exist "%PROGRAMFILES%\emacs" (
+    call winget install --source winget --silent %WINGETOPTS% --exact --id GNU.Emacs --version 29.4 > nul
 )
 
-call "%userprofile%\appdata\local\programs\python\python312\python" -m venv "%devdir%\.venv"
+call "%LOCALAPPDATA%\Programs\Python\Python312\python" -m venv "%DEVDIR%\.venv"
 
-call "%programfiles(x86)%\microsoft visual studio\installer\setup" modify --quiet ^
---installpath "%programfiles%\microsoft visual studio\2022\community" ^
---add Microsoft.VisualStudio.Component.VC.CoreIde ^
---add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 ^
---add Microsoft.VisualStudio.Component.VC.Redist.14.Latest ^
---add Microsoft.VisualStudio.Component.Windows10SDK ^
---add Microsoft.VisualStudio.Component.Windows11SDK.22621
+start "Visual Studio Initialisation" "%CFGSDIR%\vsin.bat"
 
-call "%devdir%\cfgs\shin"
+pushd "%DEVDIR%\tmp"
 
-call code --install-extension ms-vscode.cpptools
-call code --install-extension james-yu.latex-workshop
-call code --install-extension ms-python.python
-call code --install-extension reditorsupport.r
+call "%CFGSDIR%\shin"
 
-call miktex packages update-package-database
-call miktex packages update
+call code --install-extension ms-vscode.cpptools > nul
+call code --install-extension james-yu.latex-workshop > nul
+call code --install-extension ms-python.python > nul
+call code --install-extension reditorsupport.r > nul
 
-rem pip install --requirement "%devdir%\cfgs\requirements.txt"
+rem pip install --requirement "%CFGSDIR%\requirements.txt"
 
-exit /b 0
+popd
 
-:sscp
-rem soft silent copy
-setlocal
-call srm "%~2" > nul 2> nul
-copy "%~1" "%~2"
 exit /b 0
 
 :main
 
-for /f "usebackq" %%i in (`call powershell -noprofile -command "(get-item '%~f0').target"`) do set symlink_target=%%i
-if defined symlink_target (
-    call :set_dir_symlink
-) else (
-    call :set_dir_real
-)
+set CFGSDIR=%~f0
+for %%i in ("%CFGSDIR%") do set CFGSDIR=%%~dpi
+set CFGSDIR=%CFGSDIR:~0,-1%
 
-set mydir=%current_path%\..\..
-for %%i in ("%mydir%") do set mydir=%%~dpi
-set mydir=%mydir:~0,-1%
+set MYDIR=%~f0\..\..
+for %%i in ("%MYDIR%") do set MYDIR=%%~dpi
+set MYDIR=%MYDIR:~0,-1%
 
-set devdir=%current_path%\..
-for %%i in ("%devdir%") do set devdir=%%~dpi
-set devdir=%devdir:~0,-1%
+set DEVDIR=%~f0\..
+for %%i in ("%DEVDIR%") do set DEVDIR=%%~dpi
+set DEVDIR=%DEVDIR:~0,-1%
 
-echo @echo off>"%userprofile%\.setdirs.bat"
-echo set mydir=%mydir%>>"%userprofile%\.setdirs.bat"
-echo set devdir=%devdir%>>"%userprofile%\.setdirs.bat"
+set BINDIR=%DEVDIR%\bin
 
-mkdir "%devdir%\bin"
-mkdir "%devdir%\tmp"
-mkdir "%devdir%\archive"
+echo @echo off>"%USERPROFILE%\.setdirs.bat"
+echo set MYDIR=%MYDIR%>>"%USERPROFILE%\.setdirs.bat"
+echo set DEVDIR=%DEVDIR%>>"%USERPROFILE%\.setdirs.bat"
 
-mkdir "%mydir%\tmp"
-mkdir "%mydir%\games"
-mkdir "%mydir%\vids"
-mkdir "%mydir%\misc_programs"
-mkdir "%mydir%\misc"
-mkdir "%mydir%\maths"
-mkdir "%mydir%\scrap"
-mkdir "%mydir%\latex"
-mkdir "%mydir%\calibre_library"
+mkdir "%BINDIR%" > nul 2> nul
+mkdir "%DEVDIR%\tmp" > nul 2> nul
+mkdir "%DEVDIR%\archive" > nul 2> nul
 
-move "%devdir%\bin\srm.bat" "%mydir%\scrap\srm.bat_%random%" > nul 2> nul
-copy "%devdir%\cfgs\srm.bat" "%devdir%\bin\srm.bat" 
+mkdir "%MYDIR%\tmp" > nul 2> nul
 
-call :sscp "%devdir%\cfgs\vscin.bat" "%devdir%\bin\vscin.bat" 
+copy "%CFGSDIR%\vscin.bat" "%BINDIR%\vscin.bat" > nul
+copy "%CFGSDIR%\venvin.bat" "%BINDIR%\venvin.bat" > nul
+copy "%CFGSDIR%\juplab.bat" "%BINDIR%\juplab.bat" > nul
 
-call :sscp "%devdir%\cfgs\gdriveup.bat" "%devdir%\bin\gdriveup.bat"
+call powershell -noprofile -file "%CFGSDIR%\cmd_cfg.ps1"
 
-call :sscp "%devdir%\cfgs\venvin.bat" "%devdir%\bin\venvin.bat"
+mkdir "%LOCALAPPDATA%\nvim" > nul 2> nul
+copy "%CFGSDIR%\init.vim" "%LOCALAPPDATA%\nvim\init.vim" > nul
 
-call powershell -noprofile -file "%devdir%\cfgs\cmd_cfg.ps1"
+mkdir "%APPDATA%\.emacs.d\backups" > nul 2> nul
+mkdir "%APPDATA%\.emacs.d\autosaves" > nul 2> nul
+type nul > "%APPDATA%\.emacs.d\custom.el"
+copy "%CFGSDIR%\init.el" "%APPDATA%\.emacs.d\init.el" > nul
 
-mkdir "%userprofile%\appdata\local\nvim"
-call :sscp "%devdir%\cfgs\init.vim" "%userprofile%\appdata\local\nvim\init.vim" 
+copy "%CFGSDIR%\.gitconfig" "%USERPROFILE%\.gitconfig" > nul
 
-mkdir "%userprofile%\appdata\roaming\.emacs.d\baks"
-mkdir "%userprofile%\appdata\roaming\.emacs.d\autosaves"
-type nul > "%userprofile%\appdata\roaming\.emacs.d\custom.el"
-call :sscp "%devdir%\cfgs\init.el" "%userprofile%\appdata\roaming\.emacs.d\init.el" 
-
-call :sscp "%devdir%\cfgs\.gitconfig" "%userprofile%\.gitconfig" 
-
-mklink /d "%userprofile%\music\my_music" "%mydir%\g\audio\music"
+rmdir /s /q "%USERPROFILE%\music\my_music" > nul 2> nul
+xcopy "%MYDIR%\g\music" "%USERPROFILE%\music\my_music" /e /i > nul
 
 if "%~1" == "--install" (
     call :install
 )
 
-rem call taskkill /f /im explorer.exe
-rem call reg import "%devdir%\cfgs\w32_cfg.reg"
-rem start explorer
-
+set CFGSDIR=
+set BINDIR=
+set WINGETOPTS=

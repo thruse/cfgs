@@ -1,0 +1,6 @@
+# Windows
+
+C:\Program Files\Neovim\bin
+C:\Users\thrus\
+
+# macOS

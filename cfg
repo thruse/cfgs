@@ -1,87 +1,62 @@
 #!/usr/bin/env bash
 
-if [ ! "$(basename "$(readlink -f -- "$0")")" = "cfg" ] ; then
-    echo error: cfg must not be sourced
-    return 1
-fi
-
-sscp ()
-{
-    # soft silent copy
-    srm "$2" > /dev/null 2> /dev/null
-    cp "$1" "$2"
-}
-
-MYDIR="$(realpath "$(dirname "$(readlink -f "$0")")/../..")"
-DEVDIR="$(realpath "$(dirname "$(readlink -f "$0")")/..")"
+CFGSDIR="$(dirname "$0")"
+MYDIR="$(realpath "$(dirname "$0")/../..")"
+DEVDIR="$(realpath "$(dirname "$0")/..")"
+BINDIR="$DEVDIR/bin"
 
 echo "#!/usr/bin/env bash" > "$HOME/.setdirs"
 echo "export MYDIR=\"$MYDIR\"" >> "$HOME/.setdirs"
 echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/.setdirs"
 
-mkdir -p "$DEVDIR/bin"
-mkdir -p "$DEVDIR/tmp"
-mkdir -p "$DEVDIR/archive"
+mkdir "$BINDIR" > /dev/null 2> /dev/null
+mkdir "$DEVDIR/tmp" > /dev/null 2> /dev/null
+mkdir "$DEVDIR/archive" > /dev/null 2> /dev/null
 
-mkdir -p "$MYDIR/tmp"
-mkdir -p "$MYDIR/games"
-mkdir -p "$MYDIR/vids"
-mkdir -p "$MYDIR/misc_programs"
-mkdir -p "$MYDIR/misc"
-mkdir -p "$MYDIR/maths"
-mkdir -p "$MYDIR/scrap"
-mkdir -p "$MYDIR/latex"
-mkdir -p "$MYDIR/calibre_library"
+mkdir "$MYDIR/tmp" > /dev/null 2> /dev/null
 
-mv -f "$DEVDIR/bin/srm" "$MYDIR/scrap/srm_$RANDOM" > /dev/null 2> /dev/null
-cp "$DEVDIR/cfgs/srm" "$DEVDIR/bin/srm"
-chmod +x "$DEVDIR/bin/srm"
+cp "$CFGSDIR/vscin" "$BINDIR/vscin"
+chmod +x "$BINDIR/vscin"
 
-sscp "$DEVDIR/cfgs/vscin" "$DEVDIR/bin/vscin"
-chmod +x "$DEVDIR/bin/vscin"
+cp "$CFGSDIR/runemacs" "$BINDIR/runemacs"
+chmod +x "$BINDIR/runemacs"
 
-sscp "$DEVDIR/cfgs/gdriveup" "$DEVDIR/bin/gdriveup"
-chmod +x "$DEVDIR/bin/gdriveup"
+cp "$CFGSDIR/juplab" "$BINDIR/juplab"
+chmod +x "$BINDIR/juplab"
 
-sscp "$DEVDIR/cfgs/runemacs" "$DEVDIR/bin/runemacs"
-chmod +x "$DEVDIR/bin/runemacs"
+cp "$CFGSDIR/venvin" "$BINDIR/venvin"
 
-sscp "$DEVDIR/cfgs/juplab" "$DEVDIR/bin/juplab"
-chmod +x "$DEVDIR/bin/juplab"
+cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
 
-sscp "$DEVDIR/cfgs/venvin" "$DEVDIR/bin/venvin"
+mkdir "$HOME/.config" > /dev/null 2> /dev/null
+mkdir "$HOME/.config/nvim" > /dev/null 2> /dev/null
+cp "$CFGSDIR/init.vim" "$HOME/.config/nvim/init.vim"
 
-sscp "$DEVDIR/cfgs/.bash_profile" "$HOME/.bash_profile"
-
-mkdir -p "$HOME/.config/nvim"
-sscp "$DEVDIR/cfgs/init.vim" "$HOME/.config/nvim/init.vim"
-
-mkdir -p "$HOME/.emacs.d/baks"
-mkdir -p "$HOME/.emacs.d/autosaves"
+mkdir "$HOME/.emacs.d" > /dev/null 2> /dev/null
+mkdir "$HOME/.emacs.d/backups" > /dev/null 2> /dev/null
+mkdir "$HOME/.emacs.d/autosaves" > /dev/null 2> /dev/null
 cat /dev/null > "$HOME/.emacs.d/custom.el"
-sscp "$DEVDIR/cfgs/init.el" "$HOME/.emacs.d/init.el"
+cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 
-sscp "$DEVDIR/cfgs/.gitconfig" "$HOME/.gitconfig"
+cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 
-ln -s "$MYDIR/g/audio/music" "$HOME/Music/my_music"
+rm -r "$HOME/Music/my_music" > /dev/null 2> /dev/null
+cp -r "$MYDIR/g/music" "$HOME/Music/my_music"
 
 if [ "$(uname)" = "Darwin" ] ; then
     if [ "$1" = "--install" ] ; then
         if [ "$(uname -m)" = "arm64" ] && ! (arch -arch x86_64 uname -m > /dev/null) ; then
-            softwareupdate --install-rosetta --agree-to-license
+            softwareupdate --install-rosetta --agree-to-license > /dev/null
         fi
+
         eval $(/opt/homebrew/bin/brew shellenv)
-        brew bundle install --no-upgrade --file="$DEVDIR/cfgs/Brewfile"
+        brew bundle install --no-upgrade --file="$CFGSDIR/Brewfile" > /dev/null
 
         python3 -m venv "$DEVDIR/.venv"
 
-        . "$DEVDIR/cfgs/.bash_profile"
+        . "$CFGSDIR/.bash_profile"
 
-        # pip install --requirement "%devdir%\cfgs\requirements.txt"
+        # pip install --requirement "$CFGSDIR/requirements.txt"
     fi
-
-    defaults write com.apple.dock tilesize -int 16
-    defaults write com.apple.dock size-immutable -bool true
-    # killall Dock
 fi
 

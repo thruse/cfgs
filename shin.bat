@@ -1,34 +1,32 @@
 @echo off
 
-call "%userprofile%\.setdirs"
+cd /d "%USERPROFILE%"
 
-cd /d "%userprofile%"
+call "%USERPROFILE%\.setdirs"
 
 set VSCMD_SKIP_SENDTELEMETRY=1
-rem call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64
-call "%programfiles%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
+call "%PROGRAMFILES%\microsoft visual studio\2022\community\vc\auxiliary\build\vcvarsall" x64 > nul
 set VSCMD_SKIP_SENDTELEMETRY=
-
-cd /d "%devdir%"
 
 setlocal
 
-set my_bin=%devdir%\bin
-set nvim=%programfiles%\neovim\bin
-set vscode=%userprofile%\appdata\local\programs\microsoft vs code\bin
-set emacs=%programfiles%\emacs\emacs-29.4\bin
-set git=%programfiles%\git\cmd
-set seven_zip=%programfiles%\7-zip
-set miktex=%userprofile%\appdata\local\programs\miktex\miktex\bin\x64
-set python=%userprofile%\appdata\local\programs\python\python312;%userprofile%\appdata\local\programs\python\python312\scripts
-set r_project=%programfiles%\r\r-4.4.2\bin
+set MYBIN=%DEVDIR%\bin
+set NVIM=%PROGRAMFILES%\neovim\bin
+set VSCODE=%USERPROFILE%\appdata\local\programs\microsoft vs code\bin
+set EMACS=%PROGRAMFILES%\emacs\emacs-29.4\bin
+set GIT=%PROGRAMFILES%\git\cmd
+set SEVENZIP=%PROGRAMFILES%\7-zip
+set MIKTEX=%USERPROFILE%\appdata\local\programs\miktex\miktex\bin\x64
+set python=%USERPROFILE%\appdata\local\programs\python\python312;%USERPROFILE%\appdata\local\programs\python\python312\scripts
+set RPROJECT=%PROGRAMFILES%\r\r-4.4.2\bin
 
-endlocal & set path=%my_bin%;%nvim%;%vscode%;%emacs%;%git%;%seven_zip%;%miktex%;%python%;%r_project%;%path%
+endlocal & set PATH=%MYBIN%;%NVIM%;%VSCODE%;%EMACS%;%GIT%;%SEVENZIP%;%MIKTEX%;%python%;%RPROJECT%;%PATH%
 
-call "%devdir%\.venv\scripts\activate"
-set prompt=%_old_virtual_prompt%
+call "%DEVDIR%\.venv\scripts\activate"
+set PROMPT=%_OLD_VIRTUAL_PROMPT%
 
-if exist "%devdir%\cfgs\local.bat" (
-    call "%devdir%\cfgs\local"
+if exist "%DEVDIR%\cfgs\local.bat" (
+    call "%DEVDIR%\cfgs\local"
 )
 
+cd /d "%DEVDIR%"

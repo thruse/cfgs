@@ -1,7 +1,7 @@
 ;; my emacs config
 
 (setq custom-file "~/.emacs.d/custom.el")
-(setq backup-directory-alist '(("." . "~/.emacs.d/baks")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq create-lockfiles nil)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/" t)))
 
