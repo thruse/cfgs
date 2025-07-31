@@ -1,37 +1,4 @@
 @echo off
-goto main
-
-:install
-
-set WINGETOPTS=--accept-source-agreements --accept-package-agreements --no-upgrade --disable-interactivity
-
-call winget import %WINGETOPTS% --import-file "%CFGSDIR%\packages.json" > nul
-
-if not exist "%PROGRAMFILES%\emacs" (
-    call winget install --source winget --silent %WINGETOPTS% --exact --id GNU.Emacs --version 29.4 > nul
-)
-set WINGETOPTS=
-
-call "%LOCALAPPDATA%\Programs\Python\Python312\python" -m venv "%DEVDIR%\.venv"
-
-start "Visual Studio Initialisation" "%CFGSDIR%\vsin.bat"
-
-pushd "%DEVDIR%\tmp"
-
-call "%CFGSDIR%\shin"
-
-call code --install-extension ms-vscode.cpptools > nul
-call code --install-extension james-yu.latex-workshop > nul
-call code --install-extension ms-python.python > nul
-call code --install-extension reditorsupport.r > nul
-
-rem pip install --requirement "%CFGSDIR%\requirements.txt"
-
-popd
-
-exit /b 0
-
-:main
 
 set CFGSDIR=%~f0
 for %%i in ("%CFGSDIR%") do set CFGSDIR=%%~dpi
@@ -78,7 +45,7 @@ copy "%CFGSDIR%\init.el" "%APPDATA%\.emacs.d\init.el" > nul
 copy "%CFGSDIR%\.gitconfig" "%USERPROFILE%\.gitconfig" > nul
 
 if "%~1" == "--install" (
-    start "Installing" "%CFGSDIR%\install"
+    start "Installing" /wait "%CFGSDIR%\install"
 )
 
 call "%CFGSDIR%\envin"
