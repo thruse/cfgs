@@ -3,7 +3,7 @@ brew "mas"
 mas "Xcode", id: 497799835
 brew "neovim"
 cask "visual-studio-code"
-cask "emacs"
+cask "emacs-app"
 brew "git"
 cask "git-credential-manager"
 cask "mactex"
