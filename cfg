@@ -58,7 +58,7 @@ if [ "$(uname)" = "Darwin" ] ; then
 
         . "$CFGSDIR/.bash_profile"
 
-        # pip install --requirement "$CFGSDIR/requirements.txt > /dev/null"
+        # pip install --requirement "$CFGSDIR/requirements.txt"
     fi
 fi
 
