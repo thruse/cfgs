@@ -55,6 +55,8 @@ mkdir "%DEVDIR%\tmp" > nul 2> nul
 mkdir "%DEVDIR%\archive" > nul 2> nul
 
 mkdir "%MYDIR%\tmp" > nul 2> nul
+mkdir "%MYDIR%\reading" > nul 2> nul
+mkdir "%MYDIR%\reading\Calibre Library" > nul 2> nul
 
 copy "%CFGSDIR%\vscin.bat" "%BINDIR%\vscin.bat" > nul
 copy "%CFGSDIR%\venvin.bat" "%BINDIR%\venvin.bat" > nul

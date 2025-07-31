@@ -14,6 +14,8 @@ mkdir "$DEVDIR/tmp" > /dev/null 2> /dev/null
 mkdir "$DEVDIR/archive" > /dev/null 2> /dev/null
 
 mkdir "$MYDIR/tmp" > /dev/null 2> /dev/null
+mkdir "$MYDIR/reading" > /dev/null 2> /dev/null
+mkdir "$MYDIR/reading/Calibre Library" > /dev/null 2> /dev/null
 
 cp "$CFGSDIR/vscin" "$BINDIR/vscin"
 chmod +x "$BINDIR/vscin"
