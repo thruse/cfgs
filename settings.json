@@ -54,6 +54,7 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.stickyScroll.enabled": false,
+    "search.useIgnoreFiles": false,
     "window.commandCenter": false,
     "workbench.activityBar.location": "bottom",
     "workbench.editor.editorActionsLocation": "hidden",
