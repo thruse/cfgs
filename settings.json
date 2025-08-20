@@ -34,6 +34,7 @@
         "Token not allowed in a PDF string"
     ],
 
+    "python.useEnvironmentsExtension": false,
     "python.terminal.activateEnvironment": false,
 
     "breadcrumbs.enabled": false,
