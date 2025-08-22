@@ -42,6 +42,7 @@ cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 
 cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
+cp "$CFGSDIR/.bashrc" "$HOME/.bashrc"
 cp "$CFGSDIR/.Rprofile" "$HOME/.Rprofile"
 
 

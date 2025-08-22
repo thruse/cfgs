@@ -56,6 +56,9 @@
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.stickyScroll.enabled": false,
     "search.useIgnoreFiles": false,
+    "terminal.integrated.env.osx": {
+        "PATH": ""
+    },
     "window.commandCenter": false,
     "workbench.activityBar.location": "bottom",
     "workbench.editor.editorActionsLocation": "hidden",
