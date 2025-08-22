@@ -41,10 +41,15 @@ call code --install-extension reditorsupport.r
 call :announce VS Code extensions installed
 echo.
 
-rem :announce Installing Python packages
-rem pip install --requirement "%CFGSDIR%\requirements.txt"
-rem :announce Installed Python packages
-rem echo.
+call :announce Installing R packages
+call R -e "install.packages('languageserver')"
+call :announce R packages installed
+echo.
+
+call :announce Installing Python packages
+call pip install --requirement "%CFGSDIR%\requirements.txt"
+call :announce Installed Python packages
+echo.
 
 exit
 

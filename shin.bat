@@ -1,5 +1,9 @@
 @echo off
 
+if defined SHIN (
+    exit /b 0
+)
+
 call "%USERPROFILE%\.setdirs"
 
 call "%CFGSDIR%\envin"

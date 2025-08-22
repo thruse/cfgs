@@ -30,8 +30,6 @@ chmod +x "$BINDIR/terminal"
 
 cp "$CFGSDIR/venvin" "$BINDIR/venvin"
 
-cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
-
 mkdir "$HOME/.config" > /dev/null 2> /dev/null
 mkdir "$HOME/.config/nvim" > /dev/null 2> /dev/null
 cp "$CFGSDIR/init.vim" "$HOME/.config/nvim/init.vim"
@@ -43,6 +41,9 @@ cat /dev/null > "$HOME/.emacs.d/custom.el"
 cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 
 cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
+cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
+cp "$CFGSDIR/.Rprofile" "$HOME/.Rprofile"
+
 
 if [ "$1" = "--install" ] ; then
     "$BINDIR/terminal" bash "$CFGSDIR/install"

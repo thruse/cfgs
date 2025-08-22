@@ -6,10 +6,14 @@ else
     FILEPATH="$(which "$1")"
 fi
 
+
 if [ -z "$FILEPATH" ] ; then
-    osascript "$CFGSDIR/terminal.scpt" > /dev/null
+    COMMAND="cd '$PWD'"
 else
     shift 1
-    osascript "$CFGSDIR/terminal.scpt" "$FILEPATH" "$@" > /dev/null
+    COMMAND="cd '$PWD' && '$FILEPATH' $* && exit"
 fi
 
+osascript -e 'tell app "Terminal" to activate' -e "tell app \"Terminal\" to do script \"$COMMAND\""
+
+unset COMMAND

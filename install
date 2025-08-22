@@ -37,10 +37,15 @@ if [ "$(uname)" = "Darwin" ] ; then
     announce "VS Code extensions installed"
     echo
 
-    # announce Installing Python packages
-    # pip install --requirement "$CFGSDIR/requirements.txt"
-    # announce Installed Python packages
-    # echo
+    announce "Installing R packages"
+    R -e 'install.packages("languageserver")'
+    announce "R packages installed"
+    echo
+
+    announce Installing Python packages
+    pip install --requirement "$CFGSDIR/requirements.txt"
+    announce Installed Python packages
+    echo
 fi
 
 unset -f announce

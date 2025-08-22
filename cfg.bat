@@ -42,6 +42,7 @@ type nul > "%APPDATA%\.emacs.d\custom.el"
 copy "%CFGSDIR%\init.el" "%APPDATA%\.emacs.d\init.el" > nul
 
 copy "%CFGSDIR%\.gitconfig" "%USERPROFILE%\.gitconfig" > nul
+copy "%CFGSDIR%\.Rprofile" "%USERPROFILE%\.Rprofile" > nul
 
 if "%~1" == "--install" (
     start "Installing" /wait "%CFGSDIR%\install"
