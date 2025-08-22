@@ -25,9 +25,6 @@ chmod +x "$BINDIR/vscin"
 cp "$CFGSDIR/runemacs" "$BINDIR/runemacs"
 chmod +x "$BINDIR/runemacs"
 
-cp "$CFGSDIR/juplab" "$BINDIR/juplab"
-chmod +x "$BINDIR/juplab"
-
 cp "$CFGSDIR/terminal" "$BINDIR/terminal"
 chmod +x "$BINDIR/terminal"
 

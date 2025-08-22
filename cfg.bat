@@ -30,7 +30,6 @@ mkdir "%MYDIR%\reading\Calibre Library" > nul 2> nul
 
 copy "%CFGSDIR%\vscin.bat" "%BINDIR%\vscin.bat" > nul
 copy "%CFGSDIR%\venvin.bat" "%BINDIR%\venvin.bat" > nul
-copy "%CFGSDIR%\juplab.bat" "%BINDIR%\juplab.bat" > nul
 
 call powershell -noprofile -file "%CFGSDIR%\cmd_cfg.ps1"
 
