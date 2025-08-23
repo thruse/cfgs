@@ -4,11 +4,18 @@
 
 . "$CFGSDIR/envin"
 
-bind 'set mark-symlinked-directories on'
-
 if [ -f "$DEVDIR/cfgs/local" ] ; then
     . "$DEVDIR/cfgs/local"
 fi
 
-cd "$DEVDIR"
+case "$-" in
+    *i*)
+        . "$HOME/.bashrc"
+        if [ -z "$SHIN" ] ; then
+            cd "$DEVDIR"
+        fi
+        ;;
+esac
+
+export SHIN=1
 

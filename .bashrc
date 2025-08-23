@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-if [ -z "$SHIN" ] ; then
-    . "$HOME/.bash_profile"
-fi
+case "$-" in
+    *i*)
+        bind 'set mark-symlinked-directories on'
+        ;;
+esac
 

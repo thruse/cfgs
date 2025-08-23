@@ -1,1 +1,5 @@
 dropbox
+requests
+matplotlib
+numpy
+pandas

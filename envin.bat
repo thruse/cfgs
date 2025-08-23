@@ -46,5 +46,3 @@ set PATH=%BINDIR%;%PATH%
 call "%DEVDIR%\.venv\scripts\activate"
 set PROMPT=%_OLD_VIRTUAL_PROMPT%
 
-set SHIN=1
-
