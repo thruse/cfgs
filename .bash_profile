@@ -4,7 +4,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 case "$-" in
     *i*)
-        . "$HOME/.setdirs"
+        . "$HOME/setdirs"
 
         . "$CFGSDIR/envin"
 

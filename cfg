@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-CFGSDIR="$(realpath "$(dirname "$0")")"
-MYDIR="$(realpath "$CFGSDIR/../..")"
-DEVDIR="$(realpath "$CFGSDIR/..")"
-BINDIR="$DEVDIR/bin"
+export CFGSDIR="$(realpath "$(dirname "$0")")"
+export DEVDIR="$(realpath "$(dirname "$CFGSDIR")")"
+export MYDIR="$(realpath "$(dirname "$DEVDIR")")"
+export BINDIR="$DEVDIR/bin"
 
-echo "#!/usr/bin/env bash" > "$HOME/.setdirs"
-echo "export MYDIR=\"$MYDIR\"" >> "$HOME/.setdirs"
-echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/.setdirs"
-echo "export CFGSDIR=\"$CFGSDIR\"" >> "$HOME/.setdirs"
-echo "export BINDIR=\"$BINDIR\"" >> "$HOME/.setdirs"
+echo "#!/usr/bin/env bash" > "$HOME/setdirs"
+echo "export MYDIR=\"$MYDIR\"" >> "$HOME/setdirs"
+echo "export DEVDIR=\"$DEVDIR\"" >> "$HOME/setdirs"
+echo "export CFGSDIR=\"$CFGSDIR\"" >> "$HOME/setdirs"
+echo "export BINDIR=\"$BINDIR\"" >> "$HOME/setdirs"
 
 mkdir "$BINDIR" > /dev/null 2> /dev/null
 mkdir "$DEVDIR/tmp" > /dev/null 2> /dev/null

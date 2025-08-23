@@ -3,10 +3,17 @@
 set CFGSDIR=%~f0
 for %%i in ("%CFGSDIR%") do set CFGSDIR=%%~dpi
 set CFGSDIR=%CFGSDIR:~0,-1%
+echo cfgsdir is %CFGSDIR%
 
-set MYDIR=%~f0\..\..
+set DEVDIR=%CFGSDIR%
+for %%i in ("%DEVDIR%") do set DEVDIR=%%~dpi
+set DEVDIR=%DEVDIR:~0,-1%
+echo devdir is %DEVDIR%
+
+set MYDIR=%DEVDIR%
 for %%i in ("%MYDIR%") do set MYDIR=%%~dpi
 set MYDIR=%MYDIR:~0,-1%
+echo mydir is %MYDIR%
 
 set DEVDIR=%~f0\..
 for %%i in ("%DEVDIR%") do set DEVDIR=%%~dpi
@@ -14,11 +21,11 @@ set DEVDIR=%DEVDIR:~0,-1%
 
 set BINDIR=%DEVDIR%\bin
 
-echo @echo off>"%USERPROFILE%\.setdirs.bat"
-echo set MYDIR=%MYDIR%>>"%USERPROFILE%\.setdirs.bat"
-echo set DEVDIR=%DEVDIR%>>"%USERPROFILE%\.setdirs.bat"
-echo set CFGSDIR=%CFGSDIR%>>"%USERPROFILE%\.setdirs.bat"
-echo set BINDIR=%BINDIR%>>"%USERPROFILE%\.setdirs.bat"
+echo @echo off>"%USERPROFILE%\setdirs.bat"
+echo set MYDIR=%MYDIR%>>"%USERPROFILE%\setdirs.bat"
+echo set DEVDIR=%DEVDIR%>>"%USERPROFILE%\setdirs.bat"
+echo set CFGSDIR=%CFGSDIR%>>"%USERPROFILE%\setdirs.bat"
+echo set BINDIR=%BINDIR%>>"%USERPROFILE%\setdirs.bat"
 
 mkdir "%BINDIR%" > nul 2> nul
 mkdir "%DEVDIR%\tmp" > nul 2> nul
