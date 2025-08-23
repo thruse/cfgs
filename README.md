@@ -4,7 +4,7 @@
 
 - Decide what you want your directory to be. For the purposes of these instructions, let this directory be `~/foo`.
 - On macOS install Homebrew by running `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`.
-- Install the `g` folder on Google Drive to `~/Downloads` using a web browser.
+- Download the `g` folder on Google Drive to `~/Downloads` using a web browser.
 - On Windows
     - Install 7-Zip
     - `mkdir "%userprofile%\foo\tmp\drive_downloads" 2> nul`
@@ -23,15 +23,15 @@
 - Install Git.
 - Clone this repository into `~/foo/dev`. (Most important step.)
 - Start a priviledged shell session.
-- Run `~/foo/dev/cfgs/cfg --install ; . ~/.bash_profile` or `%userprofile%/foo/dev/cfgs/cfg --install & %userprofile%/foo/dev/cfgs/shin`
+- Run `~/foo/dev/cfgs/cfg --install ; . ~/.bash_profile` or `%userprofile%/foo/dev/cfgs/cfg --install & %userprofile%/foo/dev/cfgs/cmd_profile`
 
 ## Notes
 
 Make sure to install non-games in their default locations.
 
-This setup works on modern systems. (Currently macOS and Windows.)
+Make sure you don't modify existing environment variables outside the `local_profile` file, or there may be unintended effects.
 
-Install things for the first time with `cfg`, but delete things manually to get `cfg` to reinstall them.
+This setup works on modern systems. (Currently macOS and Windows.)
 
 For more things to add (for example automation of macOS system settings) look at https://github.com/mathiasbynens/dotfiles and https://github.com/holman/dotfiles.
 
@@ -51,16 +51,4 @@ Only make files and directories with names following these rules
 
 ## Todo
 
-- Fix weird bug on Windows where sometimes (unpredictably) the command prompt opens with an old raster font instead of the modern default.
-- When I decide on some `pip` packages on `python`, include `requirements.txt` in the `cfg`. `pip freeze > requirements.txt`, `pip install --requirement /path/to/requirements.txt`
-- Add more non-dev programs to `cfg` (Discord, Gimp, OBS, VLC, Kindle?, ...)
-- Add more of my usual directories to `cfg` (forgot some)
-- macOS settings (set text size?)
-- Perhaps do more in PowerShell on Windows
-- Add `shin` to my `bin` (think about this) (maybe not) (probably no point, shin will have already been called anyway by the time the `bin` is on `path`)
-- AuCTeX/LaTeX workflow (see `$DEVDIR/tmp/auctex_test` on my mac)
-- Linux support
-- Possibly install a newer version of bash from homebrew. Don't see much point in this though.
-- Fix some registry entries not getting set -- possible process needs to be killed to make it work (tried explorer already)
-- Possibly use `--` more (as in `if [ ! "$(basename "$(readlink -f -- "$0")")" = "cfg" ] ; then`) but it's difficult to tell when it's available and where it can be used.
-
+- Add an option for custom locations of `DEVDIR` and `MYDIR`.

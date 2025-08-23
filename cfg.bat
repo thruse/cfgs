@@ -31,8 +31,6 @@ mkdir "%MYDIR%\reading\Calibre Library" > nul 2> nul
 copy "%CFGSDIR%\vscin.bat" "%BINDIR%\vscin.bat" > nul
 copy "%CFGSDIR%\venvin.bat" "%BINDIR%\venvin.bat" > nul
 
-call powershell -noprofile -file "%CFGSDIR%\cmd_cfg.ps1"
-
 mkdir "%LOCALAPPDATA%\nvim" > nul 2> nul
 copy "%CFGSDIR%\init.vim" "%LOCALAPPDATA%\nvim\init.vim" > nul
 
@@ -41,6 +39,7 @@ mkdir "%APPDATA%\.emacs.d\autosaves" > nul 2> nul
 type nul > "%APPDATA%\.emacs.d\custom.el"
 copy "%CFGSDIR%\init.el" "%APPDATA%\.emacs.d\init.el" > nul
 
+call powershell -noprofile -file "%CFGSDIR%\cmd_cfg.ps1"
 copy "%CFGSDIR%\.gitconfig" "%USERPROFILE%\.gitconfig" > nul
 copy "%CFGSDIR%\.Rprofile" "%USERPROFILE%\.Rprofile" > nul
 
@@ -51,6 +50,6 @@ if "%~1" == "--install" (
 call "%CFGSDIR%\envin"
 
 rem soon we will automate getting "%MYDIR%\g"
-rmdir /s /q "%USERPROFILE%\music\my_music" > nul 2> nul
-xcopy "%MYDIR%\g\music" "%USERPROFILE%\music\my_music" /e /i > nul
+rmdir /s /q "%USERPROFILE%\Music\my_music" > nul 2> nul
+xcopy "%MYDIR%\g\music" "%USERPROFILE%\Music\my_music" /e /i > nul
 

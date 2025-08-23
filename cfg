@@ -40,9 +40,9 @@ mkdir "$HOME/.emacs.d/autosaves" > /dev/null 2> /dev/null
 cat /dev/null > "$HOME/.emacs.d/custom.el"
 cp "$CFGSDIR/init.el" "$HOME/.emacs.d/init.el"
 
-cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 cp "$CFGSDIR/.bash_profile" "$HOME/.bash_profile"
 cp "$CFGSDIR/.bashrc" "$HOME/.bashrc"
+cp "$CFGSDIR/.gitconfig" "$HOME/.gitconfig"
 cp "$CFGSDIR/.Rprofile" "$HOME/.Rprofile"
 
 

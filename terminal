@@ -1,19 +1,12 @@
 #!/usr/bin/env bash
 
-if [ -f "$1" ] ; then
-    FILEPATH="$(realpath "$1")"
+if [ -z "$*" ] ; then
+    script="cd '$PWD'"
 else
-    FILEPATH="$(which "$1")"
+    printf -v script "'%s' " "$@"
+    script="${script% }"
+    script="cd '$PWD' && $script && exit"
 fi
 
+osascript -e 'tell app "Terminal" to activate' -e "tell app \"Terminal\" to do script \"$script\"" > /dev/null
 
-if [ -z "$FILEPATH" ] ; then
-    COMMAND="cd '$PWD'"
-else
-    shift 1
-    COMMAND="cd '$PWD' && '$FILEPATH' $* && exit"
-fi
-
-osascript -e 'tell app "Terminal" to activate' -e "tell app \"Terminal\" to do script \"$COMMAND\"" > /dev/null
-
-unset COMMAND

@@ -1,21 +1,18 @@
 #!/usr/bin/env bash
 
-. "$HOME/.setdirs"
-
-. "$CFGSDIR/envin"
-
-if [ -f "$DEVDIR/cfgs/local" ] ; then
-    . "$DEVDIR/cfgs/local"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 case "$-" in
     *i*)
-        . "$HOME/.bashrc"
-        if [ -z "$SHIN" ] ; then
-            cd "$DEVDIR"
+        . "$HOME/.setdirs"
+
+        . "$CFGSDIR/envin"
+
+        if [ -f "$CFGSDIR/local_profile" ] ; then
+            . "$CFGSDIR/local_profile"
         fi
+
+        . "$HOME/.bashrc"
         ;;
 esac
-
-export SHIN=1
 

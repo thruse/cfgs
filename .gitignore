@@ -1,4 +1,4 @@
 .DS_Store
-local
-local.bat
+local_profile
+local_profile.bat
 .vscode/
