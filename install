@@ -33,6 +33,7 @@ if [ "$(uname)" = "Darwin" ] ; then
     code --install-extension ms-vscode.cpptools
     code --install-extension james-yu.latex-workshop
     code --install-extension ms-python.python
+    code --install-extension ms-toolsai.jupyter
     code --install-extension reditorsupport.r
     announce "VS Code extensions installed"
     echo

@@ -37,6 +37,7 @@ call :announce Installing VS Code extensions
 call code --install-extension ms-vscode.cpptools
 call code --install-extension james-yu.latex-workshop
 call code --install-extension ms-python.python
+call code --install-extension ms-toolsai.jupyter
 call code --install-extension reditorsupport.r
 call :announce VS Code extensions installed
 echo.
