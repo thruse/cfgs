@@ -23,7 +23,7 @@
 - Install Git.
 - Clone this repository into `~/foo/dev`. (Most important step.)
 - Start a priviledged shell session.
-- Run `. ~/foo/dev/cfgs/cfg --install` or `%userprofile%/foo/dev/cfgs/cfg --install`
+- Run `~/foo/dev/cfgs/cfg --install && ~/.bash_profile` or `%userprofile%/foo/dev/cfgs/cfg --install`
 
 ## Notes
 
